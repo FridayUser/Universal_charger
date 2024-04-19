@@ -385,26 +385,6 @@
     [
       "f0501846-9b00-4ec1-8596-952177c35a04",
       "Główny"
-    ],
-    [
-      "0f0bd340-c2d3-48dd-bd01-ac817c0395cc",
-      "Balanser"
-    ],
-    [
-      "345f7a5f-75db-4430-8b96-2e048f5f1724",
-      "Zasilacz"
-    ],
-    [
-      "8abca69a-4cf1-41f6-b583-47d31555f535",
-      "MCU"
-    ],
-    [
-      "b3aae3c9-c46d-4aed-bc70-e41b62c2dce3",
-      "Ladowarka"
-    ],
-    [
-      "4a43665d-51a2-43d4-ad69-04fcbc176fe7",
-      "Sztuczne_obciazenie"
     ]
   ],
   "text_variables": {}
