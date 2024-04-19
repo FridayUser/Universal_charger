@@ -1501,6 +1501,16 @@
 		)
 		(uuid "151d4f3c-735a-40fc-a443-7a8c0f7ab1d1")
 	)
+	(text "rezystory chyba na emiter\n"
+		(exclude_from_sim no)
+		(at 230.632 77.216 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d154448d-f7b2-40b4-a2bf-1badf095d0f8")
+	)
 	(hierarchical_label "set_I"
 		(shape input)
 		(at 60.96 69.85 180)
