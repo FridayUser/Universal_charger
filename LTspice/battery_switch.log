@@ -1,0 +1,15 @@
+LTspice 24.0.9 for Windows
+Circuit: * C:\Users\piate\Documents\GitHub\Universal_charger\LTspice\battery_switch.asc
+Start Time: Sat Apr 20 10:55:22 2024
+Warning: Multiple definitions of model "2scr375p" Type: BJT
+Warning: Multiple definitions of model "bc857b" Type: BJT
+Warning: Multiple definitions of model "bc847c" Type: BJT
+Warning: Multiple definitions of model "bc847b" Type: BJT
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+Direct Newton iteration for .op point succeeded.
+Total elapsed time: 0.108 seconds.
+
