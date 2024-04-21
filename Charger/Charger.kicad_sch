@@ -1189,16 +1189,14 @@
 	(symbol
 		(lib_id "Connector:Conn_01x07_Socket")
 		(at 250.19 50.8 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "99523c2b-5cb4-4498-a918-3de094c713ff")
 		(property "Reference" "J1"
-			(at 251.46 52.0701 0)
+			(at 251.46 49.5299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1207,7 +1205,7 @@
 			)
 		)
 		(property "Value" "Bat_ballanser_conn"
-			(at 251.46 49.5301 0)
+			(at 251.46 52.0699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
