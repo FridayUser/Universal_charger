@@ -11,16 +11,22 @@ int adcValue = 0;
 
 void setup() {
   pinMode(PIN_ADC, INPUT);
+  //Zwiększenie rozdzielczości ADC 10->12 bit
   analogReadResolution(12);
 
-  pinMode(PIN_CLK, INPUT);
-  pinMode(PIN_DT, INPUT);
+  pinMode(PIN_CLK, INPUT_PULLUP);
+  pinMode(PIN_DT, INPUT_PULLUP);
 
+  //Dioda builtin jako sygnalizator włączenia
   pinMode(25, OUTPUT);
   digitalWrite(25, HIGH);
 
-  attachInterrupt(digitalPinToInterrupt(PIN_CLK), updateEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(PIN_SW), switchPress, CHANGE);
+  //Pin 23 -> HIGH poprawia jakość napięcia ze źródła odniesienia
+  // pinMode(23, OUTPUT);
+  // digitalWrite(23, HIGH);
+
+  attachInterrupt(digitalPinToInterrupt(PIN_CLK), updateEncoder, RISING);
+  attachInterrupt(digitalPinToInterrupt(PIN_SW), switchPress, RISING);
 
   Serial.begin(9600);
 }
@@ -28,13 +34,15 @@ void setup() {
 void loop() {
   adcValue = analogRead(PIN_ADC);
   Serial.println(3.3/4096 * adcValue);
+  Serial.println(encoderPos);
   delay(500);
 }
 
 void updateEncoder() {
+
   bool data = digitalRead(PIN_DT);
-  bool clk = digitalRead(PIN_CLK);
-  if(data == clk){
+
+  if(data == HIGH){
     encoderPos++;
     digitalWrite(25, HIGH);
   }
