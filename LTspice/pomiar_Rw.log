@@ -1,6 +1,6 @@
 LTspice 24.0.9 for Windows
 Circuit: * C:\Users\piate\Documents\GitHub\Universal_charger\LTspice\pomiar_Rw.asc
-Start Time: Fri Apr 19 14:09:29 2024
+Start Time: Mon Apr 22 18:14:10 2024
 Warning: Multiple definitions of model "2scr375p" Type: BJT
 Warning: Multiple definitions of model "bc857b" Type: BJT
 Warning: Multiple definitions of model "bc847c" Type: BJT
@@ -35,5 +35,5 @@ Gmin = 1.33182e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 0.166 seconds.
+Total elapsed time: 0.158 seconds.
 
