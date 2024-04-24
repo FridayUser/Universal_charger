@@ -1056,6 +1056,46 @@
 		)
 		(uuid "fdbc868e-d339-443b-a006-079f29046d55")
 	)
+	(text "EN - podanie 3.3v załącza moduł\nset_I - podanie 5V ustawia 5A - moge przeskalować na 3.3 działa liniowo"
+		(exclude_from_sim no)
+		(at 203.708 70.358 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2cdbf3f0-63da-4e3e-b427-c2dfdb84f135")
+	)
+	(text "Vball - napiecie balansowana podanie 3.3V ustawia balansowanie na 5V \nV_bat_x - napiecie na poszczególnym ogniwie 5V na ogniwie odpowiada 3.3V na pinie \n"
+		(exclude_from_sim no)
+		(at 231.394 21.082 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a1729308-5e14-4148-9525-ac23477a877b")
+	)
+	(text "do sprawdzenia na bardzo poważnie czy hall jest dobrze włożony do schematu\n tzn jesli pchamy prąd do baterii to napiecie bedzie ponizej 1.65 a jesli \npobieramy z baterii to czy bedzie rosło"
+		(exclude_from_sim no)
+		(at 94.488 181.864 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+			)
+		)
+		(uuid "f0e9f380-af6e-4d35-95df-62b5a29a3d5f")
+	)
+	(text "P_ON - Podanie 3.3 V załącza baterie\nhall_sensor - 0A -> 1.65v  +-1A -> +-0.066mV"
+		(exclude_from_sim no)
+		(at 218.44 150.114 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "fd878cbc-6ef0-4c2b-849f-e82e75f59598")
+	)
 	(symbol
 		(lib_id "power:GND")
 		(at 224.7787 102.87 0)
