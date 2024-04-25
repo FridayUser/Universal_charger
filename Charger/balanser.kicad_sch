@@ -1179,12 +1179,6 @@
 		(uuid "a3aa3b99-232a-459c-b479-d57ae8450781")
 	)
 	(junction
-		(at 87.63 177.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a6b994cd-f5db-486b-bc58-63b0af10cc66")
-	)
-	(junction
 		(at 187.96 109.22)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1310,7 +1304,7 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 177.8) (xy 87.63 177.8)
+			(xy 83.82 177.8) (xy 91.44 177.8)
 		)
 		(stroke
 			(width 0)
@@ -1587,16 +1581,6 @@
 			(type default)
 		)
 		(uuid "42321b4f-bd05-4e19-8de7-8ae01a5aad88")
-	)
-	(wire
-		(pts
-			(xy 87.63 177.8) (xy 87.63 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "458f14bb-7e5d-40a5-8da5-ac16bd4187c4")
 	)
 	(wire
 		(pts
@@ -2097,16 +2081,6 @@
 			(type default)
 		)
 		(uuid "a0c87183-b950-431c-8a74-c4b4e090c940")
-	)
-	(wire
-		(pts
-			(xy 87.63 177.8) (xy 91.44 177.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a31f38be-0428-4fd5-953c-283ba8fa18cd")
 	)
 	(wire
 		(pts
@@ -2647,18 +2621,6 @@
 			(type default)
 		)
 		(uuid "fef73093-5917-4c0f-95d7-78480e52085c")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 87.63 179.07 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "00d83e87-e4b3-4471-820e-36ecaa0716a2")
 	)
 	(hierarchical_label "Vballans"
 		(shape input)

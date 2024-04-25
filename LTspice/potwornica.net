@@ -1,0 +1,44 @@
+* C:\Users\piate\Documents\GitHub\Universal_charger\LTspice\potwornica.asc
+CC vc in 1µ
+L1 sw out 47µ
+D1 0 sw MBRB2545CT
+XU1 0 fb sw vc in XL4016
+Cout out 0 660µ
+R1 out ref 10k
+R2 ref 0 1.2k
+R_load N003 0 10
+V1 in 0 30
+V2 N008 0 2
+V3 out N003 V
+XU2 N011 N005 12v 0 N005 level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+XU3 N014 N006 12v 0 N007 level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+R9 N011 N010 10k
+R10 0 N011 5.1k
+V4 N010 0 0.4
+R11 N014 0 3.2k
+R12 N014 N013 10k
+R13 N006 N005 10k
+R14 N007 N006 3.2k
+V5 N013 0 5v
+V6 12v 0 12
+XU4 N007 N012 12v 0 N004 LT1001
+V7 N015 0 1.65
+H1 N012 N015 V3 -0.066
+D2 N004 fb D
+D3 N009 fb D
+XU5 ref N008 12v 0 N009 LT1001
+XU6 0 fb N001 N002 in XL4016
+D4 0 N001 MBRB2545CT
+L2 N001 out 47µ
+CC1 N002 in 1µ
+.model D D
+.lib C:\Users\piate\AppData\Local\LTspice\lib\cmp\standard.dio
+* 8A
+.tran 10m
+* Second output cap not needed\nin the simulation, because of\n ideal 1000uF cap
+;.step param vp list 2.7 2.4 2.1 1.8 1.5 1.2 0.9
+.lib LTC.lib
+.lib UniversalOpAmp1.lib
+.lib XL4016.cir
+.backanno
+.end

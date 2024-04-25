@@ -1360,12 +1360,6 @@
 		(uuid "6ff39633-0a80-4f78-bc94-cedf99327f5e")
 	)
 	(junction
-		(at 149.86 130.81)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "be570723-99de-4d2e-beaf-12cffb429816")
-	)
-	(junction
 		(at 185.42 113.03)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1524,16 +1518,6 @@
 			(type default)
 		)
 		(uuid "602e6628-05d4-4e8a-9993-c25813c28b84")
-	)
-	(wire
-		(pts
-			(xy 156.21 130.81) (xy 156.21 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "609651bb-9e23-47a5-b36e-35c43237d383")
 	)
 	(wire
 		(pts
@@ -1707,16 +1691,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 130.81) (xy 156.21 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d79c92a8-9f30-4d70-86f8-40aaf710ffdf")
-	)
-	(wire
-		(pts
 			(xy 160.02 120.65) (xy 173.99 120.65)
 		)
 		(stroke
@@ -1755,18 +1729,6 @@
 		)
 		(uuid "ff21425b-ef55-470e-8313-f6549970ad98")
 	)
-	(hierarchical_label "+5V"
-		(shape input)
-		(at 200.66 97.79 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "00cfe4df-a902-4a8b-930c-f68180240ef4")
-	)
 	(hierarchical_label "P-"
 		(shape output)
 		(at 144.78 62.23 0)
@@ -1778,18 +1740,6 @@
 			(justify left)
 		)
 		(uuid "05405a9c-770b-44de-8966-f7157d8f26c6")
-	)
-	(hierarchical_label "+5V"
-		(shape input)
-		(at 149.86 99.06 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "0d03bb24-cbe1-4e06-97dd-e1b7f6ef6e6a")
 	)
 	(hierarchical_label "P+"
 		(shape output)
@@ -1827,18 +1777,6 @@
 		)
 		(uuid "4367271d-7e68-45bf-93ee-0d048c03a4be")
 	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 156.21 132.08 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "54e3259b-024c-4d35-83b1-38fad0cb9699")
-	)
 	(hierarchical_label "P_ON"
 		(shape input)
 		(at 101.6 88.9 180)
@@ -1850,6 +1788,30 @@
 			(justify right)
 		)
 		(uuid "5f3b1201-e084-4df0-b5b6-f886210bb96d")
+	)
+	(hierarchical_label "+5V"
+		(shape input)
+		(at 149.86 99.06 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8720fb95-d607-46fe-9a7a-b307e4ad6b9c")
+	)
+	(hierarchical_label "+5V"
+		(shape input)
+		(at 200.66 97.79 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c08143ff-9445-40df-9f56-7459ae1b9fc5")
 	)
 	(hierarchical_label "hall_sensor"
 		(shape output)

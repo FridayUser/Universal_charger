@@ -1,7 +1,7 @@
 LTspice 24.0.9 for Windows
 Circuit: * C:\Users\piate\Documents\GitHub\Universal_charger\LTspice\potwornica.asc
-Start Time: Tue Apr 23 11:58:42 2024
-Error on line 12 : v3 out n004 v
+Start Time: Thu Apr 25 21:04:16 2024
+Error on line 12 : v3 out n003 v
 	 Unknown parameter "v"
 solver = Normal
 Maximum thread count: 16
@@ -10,7 +10,6 @@ temp = 27
 method = modified trap
 WARNING: Less than two connections to node u1:vinokn.  This node is used by a:u1:10.
 WARNING: Less than two connections to node u6:vinokn.  This node is used by a:u6:10.
-WARNING: Less than two connections to node u7:vinokn.  This node is used by a:u7:10.
 v3: Missing value, assumed 0V @ DC
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
@@ -49,6 +48,14 @@ Source stepping failed
 Pseudo Transient failed in finding the operating point at 13.0555 µs.
 Trouble finding operating point....skipping operating point for Transient analysis.
 to 2.05078e-08
-Heightened Def Con from 0.00463565 to 0.00463565
-Total elapsed time: 16.146 seconds.
+Heightened Def Con from 0.00109119 to 0.0010912
+Heightened Def Con from 0.00191923 to 0.00191924
+Heightened Def Con from 0.00203187 to 0.00203187
+Heightened Def Con from 0.00229095 to 0.00229095
+Heightened Def Con from 0.00232475 to 0.00232475
+Heightened Def Con from 0.00236415 to 0.00236415
+Heightened Def Con from 0.00246548 to 0.00246548
+Heightened Def Con from 0.00323157 to 0.00323157
+Heightened Def Con from 0.00453095 to 0.00453095
+Total elapsed time: 11.377 seconds.
 
