@@ -2482,6 +2482,16 @@
 		)
 		(uuid "fdbc868e-d339-443b-a006-079f29046d55")
 	)
+	(wire
+		(pts
+			(xy 134.62 30.48) (xy 134.62 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffdaff8a-d28c-4835-a4d2-eed188ea839e")
+	)
 	(text "EN - podanie 3.3v załącza moduł\nset_I - podanie 3.3v ustawia 5A - działa liniowo +660mV->+1A"
 		(exclude_from_sim no)
 		(at 268.224 90.932 0)
@@ -3521,6 +3531,71 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 134.62 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f9ccd9fb-79ef-4b92-b678-c43fdd8415fd")
+		(property "Reference" "#PWR067"
+			(at 134.62 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 134.62 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 134.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 134.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 134.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "538a122f-1e1a-453b-bb0f-8aeb8839d962")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "#PWR067")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(sheet
 		(at 214.63 114.3)
 		(size 17.78 27.94)
@@ -4010,7 +4085,6 @@
 	(sheet
 		(at 119.38 33.02)
 		(size 45.72 73.66)
-		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
@@ -4020,10 +4094,11 @@
 		)
 		(uuid "8abca69a-4cf1-41f6-b583-47d31555f535")
 		(property "Sheetname" "MCU"
-			(at 119.38 32.3084 0)
+			(at 139.954 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
+					(bold yes)
 				)
 				(justify left bottom)
 			)
@@ -4257,6 +4332,16 @@
 				(justify right)
 			)
 			(uuid "ff7b1b81-8ae9-45a9-a730-e36834d9fba9")
+		)
+		(pin "+3.3V" input
+			(at 134.62 33.02 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "1be886fb-58f7-479e-86ac-f17a83ed22a1")
 		)
 		(instances
 			(project "Charger"
