@@ -1694,6 +1694,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.79 88.9) (xy 97.79 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28fdb136-408f-462b-8500-7890c6d47c05")
+	)
+	(wire
+		(pts
 			(xy 69.85 147.32) (xy 207.01 147.32)
 		)
 		(stroke
@@ -1734,6 +1744,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 93.98) (xy 106.68 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "341f7c2f-cf36-4847-b851-dbe1fa3ce5c5")
+	)
+	(wire
+		(pts
 			(xy 203.2 95.25) (xy 203.2 83.82)
 		)
 		(stroke
@@ -1751,6 +1771,16 @@
 			(type default)
 		)
 		(uuid "3b3d3e4b-a2d1-47aa-bb53-f7f08bd96e02")
+	)
+	(wire
+		(pts
+			(xy 107.95 88.9) (xy 119.38 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d42bfa4-df21-46da-bf6e-662c9b314e05")
 	)
 	(wire
 		(pts
@@ -1781,6 +1811,16 @@
 			(type default)
 		)
 		(uuid "456a99ff-e82a-4060-892a-8ea8b4f37a59")
+	)
+	(wire
+		(pts
+			(xy 109.22 91.44) (xy 119.38 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4570eb11-16ba-4b91-af18-78a49d7ce542")
 	)
 	(wire
 		(pts
@@ -1944,6 +1984,16 @@
 	)
 	(wire
 		(pts
+			(xy 111.76 96.52) (xy 119.38 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "651b3c4b-a987-45ea-a4bf-0bf892507f8b")
+	)
+	(wire
+		(pts
 			(xy 43.18 52.07) (xy 43.18 147.32)
 		)
 		(stroke
@@ -1984,6 +2034,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 106.68) (xy 97.79 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6cb31465-c2dc-4c29-b468-c2005085bf71")
+	)
+	(wire
+		(pts
 			(xy 212.09 132.08) (xy 212.09 96.52)
 		)
 		(stroke
@@ -1994,6 +2054,16 @@
 	)
 	(wire
 		(pts
+			(xy 111.76 104.14) (xy 111.76 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7453443f-8fc7-4c49-93aa-b7216949efb2")
+	)
+	(wire
+		(pts
 			(xy 209.55 99.06) (xy 214.63 99.06)
 		)
 		(stroke
@@ -2001,6 +2071,16 @@
 			(type default)
 		)
 		(uuid "7677c12c-e4b4-40e4-a653-3d50e09ffe84")
+	)
+	(wire
+		(pts
+			(xy 110.49 93.98) (xy 119.38 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a34c9fd-0018-4cb3-9965-c9c3d5e6bbd8")
 	)
 	(wire
 		(pts
@@ -2041,6 +2121,26 @@
 			(type default)
 		)
 		(uuid "8ace6936-2e20-42df-8de7-e145bac6d5f9")
+	)
+	(wire
+		(pts
+			(xy 95.25 99.06) (xy 109.22 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e887b77-bb48-4bd0-9b0c-96c5112d4b97")
+	)
+	(wire
+		(pts
+			(xy 97.79 107.95) (xy 97.79 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fcc226a-123c-4cac-ac0f-013e2ad2fd16")
 	)
 	(wire
 		(pts
@@ -2104,6 +2204,16 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 101.6) (xy 110.49 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9bd9ebc1-630f-4b82-a55e-8836ee574d8e")
+	)
+	(wire
+		(pts
 			(xy 199.39 39.37) (xy 214.63 39.37)
 		)
 		(stroke
@@ -2121,6 +2231,16 @@
 			(type default)
 		)
 		(uuid "a359746a-06b7-4714-bf14-ec15cdfc7635")
+	)
+	(wire
+		(pts
+			(xy 106.68 86.36) (xy 119.38 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a493304d-b794-4b0e-8d5b-d8c99e712354")
 	)
 	(wire
 		(pts
@@ -2144,6 +2264,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 104.14) (xy 111.76 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad3943c8-1fda-41ea-bebb-f743d91d0e42")
+	)
+	(wire
+		(pts
 			(xy 167.64 50.8) (xy 167.64 48.26)
 		)
 		(stroke
@@ -2164,6 +2294,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 96.52) (xy 107.95 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0ec1b57-656d-49de-8b7d-542dee375dc1")
+	)
+	(wire
+		(pts
 			(xy 24.13 69.85) (xy 24.13 130.81)
 		)
 		(stroke
@@ -2171,6 +2311,16 @@
 			(type default)
 		)
 		(uuid "b193c741-b71b-43c9-baeb-9fa2ab5a97fc")
+	)
+	(wire
+		(pts
+			(xy 95.25 91.44) (xy 97.79 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b302be55-56ff-44fb-932a-d307a24f837d")
 	)
 	(wire
 		(pts
@@ -2284,6 +2434,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 99.06) (xy 109.22 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7fe0db3-4ef1-4308-a3b3-0bf203291bd1")
+	)
+	(wire
+		(pts
 			(xy 165.1 43.18) (xy 175.26 43.18)
 		)
 		(stroke
@@ -2301,6 +2461,16 @@
 			(type default)
 		)
 		(uuid "ca6e4314-b35b-44ad-b150-05c263fbcf7c")
+	)
+	(wire
+		(pts
+			(xy 95.25 96.52) (xy 107.95 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce24c426-d68a-4a99-920d-5ce6f819bca0")
 	)
 	(wire
 		(pts
@@ -2434,6 +2604,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 101.6) (xy 110.49 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "efac5305-8da6-4e44-9382-04b9adfcd9d5")
+	)
+	(wire
+		(pts
 			(xy 119.38 74.93) (xy 26.67 74.93)
 		)
 		(stroke
@@ -2441,6 +2621,16 @@
 			(type default)
 		)
 		(uuid "efe710b4-0828-43e8-9198-d886b20c1f9e")
+	)
+	(wire
+		(pts
+			(xy 106.68 93.98) (xy 106.68 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f180285f-1c46-4eef-bdb1-be1650403377")
 	)
 	(wire
 		(pts
@@ -2563,6 +2753,71 @@
 			)
 		)
 		(uuid "fd878cbc-6ef0-4c2b-849f-e82e75f59598")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 97.79 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "04fb5910-e306-47f4-a03b-c7fe5eb4b620")
+		(property "Reference" "#PWR076"
+			(at 97.79 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 97.79 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 97.79 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 97.79 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "619098bb-86c8-421e-adab-1f9fc9bacd0a")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "#PWR076")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:+3.3V")
@@ -2972,6 +3227,157 @@
 			(project "Charger"
 				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
 					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x07_Socket")
+		(at 90.17 99.06 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9a90acc3-3d37-4874-82ba-609b3257f1f8")
+		(property "Reference" "J5"
+			(at 88.9 97.7899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "User_Interface_Conn"
+			(at 88.9 100.3299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Horizontal"
+			(at 90.17 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 90.17 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x07, script generated"
+			(at 90.17 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "89cca724-bdc7-4b76-a3d3-b7c8d24a242f")
+		)
+		(pin "1"
+			(uuid "82fbb888-c393-47f4-b3c1-a59fd49c1fea")
+		)
+		(pin "7"
+			(uuid "b3cd1767-892c-449d-8c06-a5da97bc5c20")
+		)
+		(pin "4"
+			(uuid "af8d4c3f-f2dd-413b-abde-9c1465f0d76f")
+		)
+		(pin "3"
+			(uuid "62090667-9427-4a94-a1c1-cde4becb2802")
+		)
+		(pin "6"
+			(uuid "eed37d08-b1cb-474b-ae9c-f17b3a267f3d")
+		)
+		(pin "5"
+			(uuid "b8855221-4fe2-4ba0-9d2b-8031905c344c")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 97.79 107.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a6de6218-5731-473e-9551-0d53eef663b8")
+		(property "Reference" "#PWR077"
+			(at 97.79 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 97.79 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 97.79 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 97.79 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b3884e2c-c28e-40f6-b6be-0bea3267b1b4")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -4342,6 +4748,56 @@
 				(justify right)
 			)
 			(uuid "1be886fb-58f7-479e-86ac-f17a83ed22a1")
+		)
+		(pin "UI_BTN_2" input
+			(at 119.38 86.36 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "90595506-9f33-434a-9b2c-f20f9e5e1a23")
+		)
+		(pin "UI_BTN_1" input
+			(at 119.38 88.9 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "2c7fba5b-ab78-472c-8b52-33c0af4e98e3")
+		)
+		(pin "UI_ENC_SW" input
+			(at 119.38 91.44 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "6a3ca941-84e3-4b74-80e4-a95078ae2a53")
+		)
+		(pin "UI_ENC_CLK" input
+			(at 119.38 96.52 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "691f685e-8ec7-43ee-bedc-aec4c28b2dbc")
+		)
+		(pin "UI_ENC_DT" input
+			(at 119.38 93.98 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "84f9c91e-02ba-43ae-8917-1291d488edf3")
 		)
 		(instances
 			(project "Charger"
