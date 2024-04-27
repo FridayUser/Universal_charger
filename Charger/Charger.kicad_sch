@@ -2702,6 +2702,16 @@
 		)
 		(uuid "34b36535-6e33-40ed-b5a2-569a560cba5b")
 	)
+	(text "to jest załączenie baterii nie pomiaru \n"
+		(exclude_from_sim no)
+		(at 184.658 104.902 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "6e02f866-8b16-40fd-a3df-885deb6d7897")
+	)
 	(text "Bardzo proszę o nie renumerowanie elementów !!!"
 		(exclude_from_sim no)
 		(at 138.684 -9.144 0)
