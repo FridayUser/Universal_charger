@@ -1512,6 +1512,10 @@
 		(color 0 0 0 0)
 		(uuid "ceba46d8-5b33-4ac7-a64d-c74958d43588")
 	)
+	(no_connect
+		(at 175.26 55.88)
+		(uuid "cc170ec5-460f-433f-a45f-d17b48ca7427")
+	)
 	(wire
 		(pts
 			(xy 186.69 71.12) (xy 186.69 35.56)
@@ -2733,16 +2737,6 @@
 			)
 		)
 		(uuid "a1729308-5e14-4148-9525-ac23477a877b")
-	)
-	(text "Co robi FM? xD"
-		(exclude_from_sim no)
-		(at 188.468 56.134 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "dde8aeb6-53a5-4afd-a162-b1538b77250a")
 	)
 	(text "do sprawdzenia na bardzo poważnie czy hall jest dobrze włożony do schematu\n tzn jesli pchamy prąd do baterii to napiecie bedzie ponizej 1.65 a jesli \npobieramy z baterii to czy bedzie rosło"
 		(exclude_from_sim no)
