@@ -4080,7 +4080,7 @@
 				)
 			)
 		)
-		(property "Value" "Fuse_Small"
+		(property "Value" "10A"
 			(at 33.02 44.45 0)
 			(effects
 				(font
@@ -6365,7 +6365,7 @@
 			)
 		)
 		(pin "SPI_SCK" output
-			(at 165.1 45.72 0)
+			(at 165.1 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6375,7 +6375,7 @@
 			(uuid "aaaf5437-4bb1-4a93-ab43-bada6767dd09")
 		)
 		(pin "SPI_CS" output
-			(at 165.1 43.18 0)
+			(at 165.1 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6385,7 +6385,7 @@
 			(uuid "e84d14ee-824d-498d-8ca2-2834617d9af3")
 		)
 		(pin "SPI_MISO" input
-			(at 165.1 40.64 0)
+			(at 165.1 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6395,7 +6395,7 @@
 			(uuid "af2de8bb-65c9-484c-abe4-8ba363ede668")
 		)
 		(pin "SPI_MOSI" output
-			(at 165.1 38.1 0)
+			(at 165.1 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6585,7 +6585,7 @@
 			(uuid "1be886fb-58f7-479e-86ac-f17a83ed22a1")
 		)
 		(pin "UI_BTN_2" input
-			(at 119.38 86.36 180)
+			(at 119.38 88.9 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6595,7 +6595,7 @@
 			(uuid "90595506-9f33-434a-9b2c-f20f9e5e1a23")
 		)
 		(pin "UI_BTN_1" input
-			(at 119.38 88.9 180)
+			(at 119.38 86.36 180)
 			(effects
 				(font
 					(size 1.27 1.27)
