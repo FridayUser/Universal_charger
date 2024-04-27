@@ -1495,6 +1495,12 @@
 		)
 	)
 	(junction
+		(at 36.83 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "065dcf9d-05e8-4909-a680-c7c582c02cbb")
+	)
+	(junction
 		(at 212.09 132.08)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2018,6 +2024,16 @@
 	)
 	(wire
 		(pts
+			(xy 105.41 55.88) (xy 105.41 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "686bebbb-9413-4782-b64b-fef875a58253")
+	)
+	(wire
+		(pts
 			(xy 171.45 35.56) (xy 175.26 35.56)
 		)
 		(stroke
@@ -2035,6 +2051,16 @@
 			(type default)
 		)
 		(uuid "6b008961-33c0-4c25-8f58-9901e19af54a")
+	)
+	(wire
+		(pts
+			(xy 119.38 77.47) (xy 27.94 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b033edb-9013-4c2c-a4c2-120918d82cbc")
 	)
 	(wire
 		(pts
@@ -2075,6 +2101,16 @@
 			(type default)
 		)
 		(uuid "7677c12c-e4b4-40e4-a653-3d50e09ffe84")
+	)
+	(wire
+		(pts
+			(xy 27.94 135.89) (xy 36.83 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7984ade1-ae9c-4d52-8324-b3627fa2f445")
 	)
 	(wire
 		(pts
@@ -2145,6 +2181,16 @@
 			(type default)
 		)
 		(uuid "8fcc226a-123c-4cac-ac0f-013e2ad2fd16")
+	)
+	(wire
+		(pts
+			(xy 101.6 53.34) (xy 119.38 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ffe962a-fddb-4bc8-84b8-c1bebe534d7b")
 	)
 	(wire
 		(pts
@@ -2468,6 +2514,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 55.88) (xy 105.41 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc48f85e-218a-4357-8cf3-bfa350cfe8ff")
+	)
+	(wire
+		(pts
 			(xy 95.25 96.52) (xy 107.95 96.52)
 		)
 		(stroke
@@ -2585,6 +2641,16 @@
 			(type default)
 		)
 		(uuid "e3bc09f5-700c-4504-a188-43f764cbef26")
+	)
+	(wire
+		(pts
+			(xy 27.94 77.47) (xy 27.94 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7c945ca-a286-4764-aca5-d6aaae209cce")
 	)
 	(wire
 		(pts
@@ -2737,6 +2803,16 @@
 			)
 		)
 		(uuid "a1729308-5e14-4148-9525-ac23477a877b")
+	)
+	(text "tu by chciały być magistrale"
+		(exclude_from_sim no)
+		(at 92.964 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d26f1d6a-6b1c-4dc6-825e-a2aa17f6f361")
 	)
 	(text "do sprawdzenia na bardzo poważnie czy hall jest dobrze włożony do schematu\n tzn jesli pchamy prąd do baterii to napiecie bedzie ponizej 1.65 a jesli \npobieramy z baterii to czy bedzie rosło"
 		(exclude_from_sim no)
@@ -3147,6 +3223,74 @@
 			(project "Charger"
 				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
 					(reference "#PWR062")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Socket")
+		(at 96.52 55.88 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "930bb656-355f-411f-bf0b-e8d414db721e")
+		(property "Reference" "J7"
+			(at 97.155 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Temp_Sens_Conn"
+			(at 97.155 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 96.52 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 96.52 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 96.52 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa789a2c-a12c-4cd8-b325-f75383bc9773")
+		)
+		(pin "2"
+			(uuid "b66c1dd8-3ab0-4551-8937-0b88e1e78510")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -3610,7 +3754,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical"
 			(at 180.34 45.72 0)
 			(effects
 				(font
@@ -3671,6 +3815,71 @@
 			(project "Charger"
 				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
 					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 105.41 58.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c0bb7787-a02a-4960-a755-4abffc3be842")
+		(property "Reference" "#PWR085"
+			(at 105.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 105.41 62.738 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 105.41 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 105.41 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 105.41 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9956e5fa-c3b1-4bff-a6f0-2877f2e853f2")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04"
+					(reference "#PWR085")
 					(unit 1)
 				)
 			)
@@ -4663,16 +4872,6 @@
 			)
 			(uuid "746b4757-b13b-4112-b666-fde79c87b5bc")
 		)
-		(pin "ISENS_EN" output
-			(at 165.1 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "3dfb64e9-7e45-4cd6-8a09-14f48eea1ada")
-		)
 		(pin "PSU_OutV" input
 			(at 119.38 74.93 180)
 			(effects
@@ -4802,6 +5001,36 @@
 				(justify left)
 			)
 			(uuid "84f9c91e-02ba-43ae-8917-1291d488edf3")
+		)
+		(pin "PSU_OutI" input
+			(at 119.38 77.47 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "875513ad-d802-402b-a487-2cd9fd65bc06")
+		)
+		(pin "ONE_WIRE" output
+			(at 119.38 53.34 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "36afc4e0-c906-4361-b83a-929fb8a0fffc")
+		)
+		(pin "BAT_P_ON" output
+			(at 165.1 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "697c1ae0-1eed-43fc-ae44-abf17f6ba933")
 		)
 		(instances
 			(project "Charger"
