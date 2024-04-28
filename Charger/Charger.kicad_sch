@@ -3831,16 +3831,6 @@
 		)
 		(uuid "a1729308-5e14-4148-9525-ac23477a877b")
 	)
-	(text "tu by chciały być magistrale"
-		(exclude_from_sim no)
-		(at 92.964 66.04 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "d26f1d6a-6b1c-4dc6-825e-a2aa17f6f361")
-	)
 	(text "do sprawdzenia na bardzo poważnie czy hall jest dobrze włożony do schematu\n tzn jesli pchamy prąd do baterii to napiecie bedzie ponizej 1.65 a jesli \npobieramy z baterii to czy bedzie rosło"
 		(exclude_from_sim no)
 		(at 94.488 181.864 0)
