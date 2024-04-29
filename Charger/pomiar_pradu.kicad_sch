@@ -1354,10 +1354,34 @@
 		(uuid "3407038b-1f7f-4384-b5fa-517d6a998260")
 	)
 	(junction
+		(at 138.43 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "35692c82-22c1-4ea9-becc-9387b86ee2af")
+	)
+	(junction
+		(at 166.37 120.65)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4d209b72-0a20-4aa2-b417-a6ec4663f0cc")
+	)
+	(junction
 		(at 210.82 127)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ff39633-0a80-4f78-bc94-cedf99327f5e")
+	)
+	(junction
+		(at 160.02 123.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bacd8330-6fab-4613-a441-efdcd8943c9c")
+	)
+	(junction
+		(at 149.86 106.68)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c74868cc-f135-46b4-b8a2-6866abd06965")
 	)
 	(junction
 		(at 185.42 113.03)
@@ -1411,6 +1435,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 106.68) (xy 149.86 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1602a8c1-7f2b-4cfd-a9f1-f15874c46326")
+	)
+	(wire
+		(pts
 			(xy 195.58 127) (xy 195.58 118.11)
 		)
 		(stroke
@@ -1418,6 +1452,16 @@
 			(type default)
 		)
 		(uuid "165c201c-8141-4625-8b75-e01f25f012e6")
+	)
+	(wire
+		(pts
+			(xy 168.91 144.78) (xy 168.91 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b752b7a-80f3-4241-a393-3e9ce013d9b4")
 	)
 	(wire
 		(pts
@@ -1431,7 +1475,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 99.06) (xy 149.86 110.49)
+			(xy 149.86 99.06) (xy 149.86 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1478,6 +1522,26 @@
 			(type default)
 		)
 		(uuid "3f65f25d-0a35-41ab-b7d6-a26e207b20d2")
+	)
+	(wire
+		(pts
+			(xy 166.37 154.94) (xy 166.37 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "424c949a-209b-40f5-8aea-90729f65fb59")
+	)
+	(wire
+		(pts
+			(xy 166.37 120.65) (xy 173.99 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a31985a-a396-4051-a410-f2e195f02e57")
 	)
 	(wire
 		(pts
@@ -1541,6 +1605,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 154.94) (xy 166.37 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66ddb40a-469a-44d4-9b10-0736cdf575e9")
+	)
+	(wire
+		(pts
 			(xy 87.63 69.85) (xy 87.63 115.57)
 		)
 		(stroke
@@ -1551,7 +1625,17 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 125.73) (xy 139.7 125.73)
+			(xy 160.02 123.19) (xy 160.02 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70bb9e96-e0bd-4c37-80e2-d795a1f6bf59")
+	)
+	(wire
+		(pts
+			(xy 82.55 125.73) (xy 138.43 125.73)
 		)
 		(stroke
 			(width 0)
@@ -1601,6 +1685,36 @@
 	)
 	(wire
 		(pts
+			(xy 138.43 125.73) (xy 138.43 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "85ff5baf-fc78-49c9-b523-0b60857b73e4")
+	)
+	(wire
+		(pts
+			(xy 138.43 125.73) (xy 139.7 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89f67fd4-89ac-46f0-b282-6fd578bd9cc9")
+	)
+	(wire
+		(pts
+			(xy 168.91 106.68) (xy 149.86 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a3a908d-658b-46ac-b2fd-06cc1a177fda")
+	)
+	(wire
+		(pts
 			(xy 144.78 55.88) (xy 114.3 55.88)
 		)
 		(stroke
@@ -1618,6 +1732,16 @@
 			(type default)
 		)
 		(uuid "9d90dfe2-100d-4dce-a661-d4179207658a")
+	)
+	(wire
+		(pts
+			(xy 148.59 144.78) (xy 168.91 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a453b17a-5a69-4168-88bc-ef5bdfab4a1d")
 	)
 	(wire
 		(pts
@@ -1691,7 +1815,37 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 120.65) (xy 173.99 120.65)
+			(xy 158.75 157.48) (xy 160.02 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cee2c2d5-6201-4a13-b384-dacceb4053d3")
+	)
+	(wire
+		(pts
+			(xy 135.89 115.57) (xy 135.89 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d710dc54-408f-442b-b281-10ecc56f130c")
+	)
+	(wire
+		(pts
+			(xy 138.43 160.02) (xy 135.89 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e26c9cc1-eee0-4921-b1ba-ef2bf4bd6e9c")
+	)
+	(wire
+		(pts
+			(xy 160.02 120.65) (xy 166.37 120.65)
 		)
 		(stroke
 			(width 0)
@@ -2545,6 +2699,71 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 148.59 165.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8d4d8dc9-6b2d-4bfc-8129-70012ee0a8b0")
+		(property "Reference" "#PWR027"
+			(at 148.59 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 148.59 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 148.59 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 148.59 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 148.59 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9bb2e640-90bd-49c0-8f22-7d299450580c")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04/08a52aae-54ab-4520-98c9-33e740886dfc"
+					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 149.86 130.81 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2668,6 +2887,95 @@
 			(project "Charger"
 				(path "/f0501846-9b00-4ec1-8596-952177c35a04/08a52aae-54ab-4520-98c9-33e740886dfc"
 					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Sensor_Current:ACS712xLCTR-20A")
+		(at 148.59 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9d65dfd1-5345-4096-b23e-d13bab7fb053")
+		(property "Reference" "U7"
+			(at 151.13 142.748 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "ACS712xLCTR-20A"
+			(at 151.13 145.288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+			(at 151.13 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.allegromicro.com/~/media/Files/Datasheets/ACS712-Datasheet.ashx?la=en"
+			(at 148.59 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "±20A Bidirectional Hall-Effect Current Sensor, +5.0V supply, 100mV/A, SOIC-8"
+			(at 148.59 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "6"
+			(uuid "a97bf7f6-ea97-494b-a508-15281aa39774")
+		)
+		(pin "1"
+			(uuid "bb736528-e00f-4403-beec-9b5acc567a85")
+		)
+		(pin "5"
+			(uuid "91c6d8ca-09e0-4c3b-83a9-7219486e50c8")
+		)
+		(pin "4"
+			(uuid "fa8b7ab8-6282-4759-b6bf-860891046f79")
+		)
+		(pin "8"
+			(uuid "8a1036d3-16ab-4e12-be55-528da8d83e18")
+		)
+		(pin "7"
+			(uuid "7b0b3354-71d4-497a-b7fa-41a0e84fb315")
+		)
+		(pin "3"
+			(uuid "d9b5ee7b-b2d4-4ebf-9bad-6a88ebaf3db7")
+		)
+		(pin "2"
+			(uuid "4ca98bc6-39ed-4bbe-8e96-4998c94b3919")
+		)
+		(instances
+			(project "Charger"
+				(path "/f0501846-9b00-4ec1-8596-952177c35a04/08a52aae-54ab-4520-98c9-33e740886dfc"
+					(reference "U7")
 					(unit 1)
 				)
 			)
