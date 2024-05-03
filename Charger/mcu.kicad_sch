@@ -3354,6 +3354,16 @@
 		)
 		(uuid "6d3cb287-b0eb-4ddd-962e-7ea0ee65fdb2")
 	)
+	(text "Use CD74HC4051M \nwith 3.3V logic\n(pin compatible)"
+		(exclude_from_sim no)
+		(at 224.028 85.344 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7cd44072-0748-474c-beaf-68e4aeb75834")
+	)
 	(text "Use internall pullup or add 10k pullup.\nAdd debounce circuit"
 		(exclude_from_sim no)
 		(at 20.066 190.5 0)
