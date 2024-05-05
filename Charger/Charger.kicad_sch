@@ -4409,7 +4409,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "Fuse_Small"
+		(property "Value" "10A"
 			(at 213.36 107.9499 90)
 			(effects
 				(font

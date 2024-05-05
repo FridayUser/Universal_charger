@@ -1,6 +1,6 @@
 LTspice 24.0.9 for Windows
 Circuit: * C:\Users\piate\Documents\GitHub\Universal_charger\LTspice\balanser_ostateczna_wersja.asc
-Start Time: Thu Apr 18 23:03:21 2024
+Start Time: Tue Apr 30 12:21:42 2024
 Warning: Multiple definitions of model "2scr375p" Type: BJT
 Warning: Multiple definitions of model "bc857b" Type: BJT
 Warning: Multiple definitions of model "bc847c" Type: BJT
@@ -42,45 +42,45 @@ Gmin = 1.01577e-08
 vernier = 0.0625
 vernier = 0.03125
 vernier = 0.0416667
-Gmin = 9.52061e-09
 vernier = 0.0208333
+Gmin = 9.77009e-09
 vernier = 0.0277778
-Gmin = 9.11723e-09
+Gmin = 9.19582e-09
 vernier = 0.037037
 vernier = 0.0185185
 vernier = 0.0246913
-Gmin = 8.73272e-09
+Gmin = 8.81475e-09
 vernier = 0.0329218
 vernier = 0.0164609
-Gmin = 8.36442e-09
+Gmin = 8.4603e-09
 vernier = 0.0219478
 vernier = 0.0292638
-Gmin = 7.91186e-09
+Gmin = 7.97712e-09
 vernier = 0.0390184
-Gmin = 7.24971e-09
 vernier = 0.0520245
+Gmin = 7.26845e-09
 vernier = 0.0693659
-Gmin = 6.26298e-09
+Gmin = 6.25242e-09
 vernier = 0.0924879
 vernier = 0.123317
-Gmin = 4.96489e-09
+Gmin = 4.89166e-09
 vernier = 0.164423
-Gmin = 3.45298e-09
 vernier = 0.21923
+Gmin = 3.32471e-09
 vernier = 0.292307
-Gmin = 1.89074e-09
+Gmin = 1.78951e-09
 vernier = 0.389743
 vernier = 0.519657
-Gmin = 7.36214e-10
+Gmin = 6.61747e-10
 vernier = 0.692876
-Gmin = 1.732e-10
 vernier = 0.923834
+Gmin = 1.42902e-10
 vernier = 1
-Gmin = 2.03914e-11
-Gmin = 2.18951e-12
-Gmin = 2.35097e-13
+Gmin = 1.6568e-11
+Gmin = 1.77898e-12
+Gmin = 1.91016e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 0.665 seconds.
+Total elapsed time: 0.952 seconds.
 
