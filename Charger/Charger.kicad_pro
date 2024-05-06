@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 1.325,
-          "width": 5.0
+          "height": 3.8,
+          "width": 3.8
         },
         "silk_line_width": 0.09999999999999999,
         "silk_text_italic": false,
@@ -58,12 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "lib_footprint_mismatch|109007500|69485000|b3c498c4-8c0d-4e78-8d95-203e3294e3b0|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|185450000|114200000|158346e7-11f5-402b-b42c-a3ef0adfc92c|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|189942500|64047500|d651b106-db79-447e-b2d1-d0bfae8697c2|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|99425000|114150000|e39ed9b9-2647-4194-a026-9e1e1ff242dd|00000000-0000-0000-0000-000000000000"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -81,7 +76,7 @@
         "extra_footprint": "ignore",
         "footprint": "error",
         "footprint_symbol_mismatch": "warning",
-        "footprint_type_mismatch": "ignore",
+        "footprint_type_mismatch": "warning",
         "hole_clearance": "error",
         "hole_near_hole": "error",
         "invalid_outline": "error",
@@ -89,16 +84,16 @@
         "item_on_disabled_layer": "error",
         "items_not_allowed": "error",
         "length_out_of_range": "error",
-        "lib_footprint_issues": "warning",
-        "lib_footprint_mismatch": "warning",
+        "lib_footprint_issues": "ignore",
+        "lib_footprint_mismatch": "ignore",
         "malformed_courtyard": "error",
         "microvia_drill_out_of_range": "error",
         "missing_courtyard": "ignore",
         "missing_footprint": "warning",
         "net_conflict": "warning",
-        "npth_inside_courtyard": "ignore",
+        "npth_inside_courtyard": "warning",
         "padstack": "warning",
-        "pth_inside_courtyard": "ignore",
+        "pth_inside_courtyard": "warning",
         "shorting_items": "error",
         "silk_edge_clearance": "warning",
         "silk_over_copper": "warning",
