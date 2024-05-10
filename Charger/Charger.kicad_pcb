@@ -4560,7 +4560,7 @@
 			(at 0 -2.9 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "6d020419-4742-42a8-8f4d-b5454a78f7cf")
+			(uuid "0c7c01a2-dbc6-4c6d-842a-380dcef7f1fc")
 			(effects
 				(font
 					(size 1 1)
@@ -4571,7 +4571,7 @@
 		(property "Value" "MountingHole_2.2mm_M2_DIN965_Pad_TopBottom"
 			(at 0 2.9 0)
 			(layer "F.Fab")
-			(uuid "9b228350-a50a-4397-bebf-b7ff80a2fd1e")
+			(uuid "37582b8a-a8e5-4c4b-a2e1-c4bf78ae0c3e")
 			(effects
 				(font
 					(size 1 1)
@@ -4625,7 +4625,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "400b6104-878e-444a-82a7-f020a320ba2e")
+			(uuid "70161a5d-cd25-4129-99e4-02604f0aad37")
 		)
 		(fp_circle
 			(center 0 0)
@@ -4636,12 +4636,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "a332f91e-197d-47bb-a705-3981a39ec5d2")
+			(uuid "e8f4e30a-080c-40aa-b737-ea4310f1e11b")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "2aa728ed-565f-4a13-8b89-0e8d300d5823")
+			(uuid "23069bc7-dc4b-4185-b36c-81a292bc316c")
 			(effects
 				(font
 					(size 1 1)
@@ -4655,7 +4655,7 @@
 			(layers "F.Cu" "F.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "a0c998b0-a9ac-4321-8a18-21b4446c3fe0")
+			(uuid "f7d20e44-869e-44e3-8473-08b888c55c43")
 		)
 		(pad "1" connect circle
 			(at 0 0)
@@ -4663,7 +4663,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "2cc2110a-c312-4aab-a726-f45db4b85ed5")
 		)
 		(pad "e" thru_hole circle
 			(at 0 0)
@@ -4673,7 +4673,7 @@
 			(remove_unused_layers no)
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "18c59939-9399-4986-9835-825e5fc69d3c")
+			(uuid "e5adf686-6856-40eb-9b7d-c68850b4e944")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -5540,7 +5540,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "fb14f0f8-ae20-4b15-9466-564fe8ce306a")
 		)
 	)
 	(footprint "Package_SO:SO-8_3.9x4.9mm_P1.27mm"
@@ -6707,7 +6707,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "af3cf65c-e8f1-432c-b6e8-4e883c3184f4")
+			(uuid "f90da237-99c2-4056-9c99-b076aed51139")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6718,7 +6718,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "543849e3-eb52-49cb-b45b-eb249dfeef79")
+			(uuid "c8fa4d40-5a6b-4e76-bfde-8e701ef5a871")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6767,7 +6767,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "f49a5e20-27fc-4caf-84c0-4c147c48d884")
 		)
 	)
 	(footprint "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
@@ -12361,7 +12361,7 @@
 			(at 0 -2.9 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "6d020419-4742-42a8-8f4d-b5454a78f7cf")
+			(uuid "04d44676-0c6d-4bf6-8f14-f3da3fbd0f1b")
 			(effects
 				(font
 					(size 1 1)
@@ -12372,7 +12372,7 @@
 		(property "Value" "MountingHole_2.2mm_M2_DIN965_Pad_TopBottom"
 			(at 0 2.9 0)
 			(layer "F.Fab")
-			(uuid "9b228350-a50a-4397-bebf-b7ff80a2fd1e")
+			(uuid "fdbc0562-96c5-4231-a89e-6d8472d9fb52")
 			(effects
 				(font
 					(size 1 1)
@@ -12426,7 +12426,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "400b6104-878e-444a-82a7-f020a320ba2e")
+			(uuid "255b07c7-7ac7-4040-9781-f4a524476d97")
 		)
 		(fp_circle
 			(center 0 0)
@@ -12437,12 +12437,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "a332f91e-197d-47bb-a705-3981a39ec5d2")
+			(uuid "ca6fd5ea-137a-4c42-8e35-5c4666560fb3")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "2aa728ed-565f-4a13-8b89-0e8d300d5823")
+			(uuid "15e01b78-4e6a-4b7c-b867-97d4643f5022")
 			(effects
 				(font
 					(size 1 1)
@@ -12456,7 +12456,7 @@
 			(layers "F.Cu" "F.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "a0c998b0-a9ac-4321-8a18-21b4446c3fe0")
+			(uuid "e2e0e36e-b4e4-4f9c-9e3f-24861b2c9422")
 		)
 		(pad "1" connect circle
 			(at 0 0)
@@ -12464,7 +12464,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "b50729ff-98b2-4a71-aa22-4b43fcb1c3dc")
 		)
 		(pad "e" thru_hole circle
 			(at 0 0)
@@ -12474,7 +12474,7 @@
 			(remove_unused_layers no)
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "18c59939-9399-4986-9835-825e5fc69d3c")
+			(uuid "99e6b399-6d8c-4f61-b3e1-9d18b96f4e90")
 		)
 	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
@@ -19650,7 +19650,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "af3cf65c-e8f1-432c-b6e8-4e883c3184f4")
+			(uuid "632dfd2c-078e-4ae2-a12c-505e79dd79bb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19661,7 +19661,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "543849e3-eb52-49cb-b45b-eb249dfeef79")
+			(uuid "9c233125-f2ca-4d7f-bc4f-856c1b1d3094")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19710,7 +19710,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "e10d1b5a-e58f-4dde-8858-c19a855127fd")
 		)
 	)
 	(footprint "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
@@ -22996,7 +22996,7 @@
 			(at 0 -2.9 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "6d020419-4742-42a8-8f4d-b5454a78f7cf")
+			(uuid "11464ed8-3013-4efd-90f6-b0248891c316")
 			(effects
 				(font
 					(size 1 1)
@@ -23007,7 +23007,7 @@
 		(property "Value" "MountingHole_2.2mm_M2_DIN965_Pad_TopBottom"
 			(at 0 2.9 0)
 			(layer "F.Fab")
-			(uuid "9b228350-a50a-4397-bebf-b7ff80a2fd1e")
+			(uuid "8976d848-5e47-47d8-a492-0ff61e3ea658")
 			(effects
 				(font
 					(size 1 1)
@@ -23061,7 +23061,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "400b6104-878e-444a-82a7-f020a320ba2e")
+			(uuid "1cd5eea9-619d-4c35-bd2e-3e2792d8bbf0")
 		)
 		(fp_circle
 			(center 0 0)
@@ -23072,12 +23072,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "a332f91e-197d-47bb-a705-3981a39ec5d2")
+			(uuid "814b55ca-3a9a-4cf6-92fb-3c81d3ce8a02")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "2aa728ed-565f-4a13-8b89-0e8d300d5823")
+			(uuid "75d55bc5-f436-41f6-8624-f3c6dd862694")
 			(effects
 				(font
 					(size 1 1)
@@ -23091,7 +23091,7 @@
 			(layers "F.Cu" "F.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "a0c998b0-a9ac-4321-8a18-21b4446c3fe0")
+			(uuid "b027fdca-8050-441c-ae23-276d276bad1c")
 		)
 		(pad "1" connect circle
 			(at 0 0)
@@ -23099,7 +23099,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "1993c635-c93d-4196-8524-c5436e5dffe6")
 		)
 		(pad "e" thru_hole circle
 			(at 0 0)
@@ -23109,7 +23109,7 @@
 			(remove_unused_layers no)
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "18c59939-9399-4986-9835-825e5fc69d3c")
+			(uuid "b128fb45-ee82-43e5-addf-097b089e7306")
 		)
 	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
@@ -24817,7 +24817,7 @@
 			(at 0 -2.9 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "6d020419-4742-42a8-8f4d-b5454a78f7cf")
+			(uuid "336bbbf0-105d-4a65-a02c-f4c67d4b5590")
 			(effects
 				(font
 					(size 1 1)
@@ -24828,7 +24828,7 @@
 		(property "Value" "MountingHole_2.2mm_M2_DIN965_Pad_TopBottom"
 			(at 0 2.9 0)
 			(layer "F.Fab")
-			(uuid "9b228350-a50a-4397-bebf-b7ff80a2fd1e")
+			(uuid "5ca5105d-c3e7-4431-8ddb-1f1b66dbccf7")
 			(effects
 				(font
 					(size 1 1)
@@ -24882,7 +24882,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "400b6104-878e-444a-82a7-f020a320ba2e")
+			(uuid "fb218153-900d-4bbc-a95c-539d96ddb38f")
 		)
 		(fp_circle
 			(center 0 0)
@@ -24893,12 +24893,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "a332f91e-197d-47bb-a705-3981a39ec5d2")
+			(uuid "8af39694-87b5-4cc1-ad4f-0258e5660e7d")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "2aa728ed-565f-4a13-8b89-0e8d300d5823")
+			(uuid "3232affd-48de-4183-a4f7-b917c97a906a")
 			(effects
 				(font
 					(size 1 1)
@@ -24912,7 +24912,7 @@
 			(layers "F.Cu" "F.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "a0c998b0-a9ac-4321-8a18-21b4446c3fe0")
+			(uuid "4eabed97-4c61-4264-aed1-61fb148767ec")
 		)
 		(pad "1" connect circle
 			(at 0 0)
@@ -24920,7 +24920,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "06794117-a28e-4d7f-bb21-9c62d6122f76")
 		)
 		(pad "e" thru_hole circle
 			(at 0 0)
@@ -24930,7 +24930,7 @@
 			(remove_unused_layers no)
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "18c59939-9399-4986-9835-825e5fc69d3c")
+			(uuid "7d8f1167-dfc3-4519-afbb-aaa61ca21c67")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -29546,7 +29546,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "af3cf65c-e8f1-432c-b6e8-4e883c3184f4")
+			(uuid "7545d4c4-e6f7-4c08-a73b-970d0a0224cd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29557,7 +29557,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "543849e3-eb52-49cb-b45b-eb249dfeef79")
+			(uuid "643c4706-dab8-40d2-8aa6-4b064f32cc47")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29606,7 +29606,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "f5e515b4-0dc7-4acf-81cc-dbebd6876339")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -34525,7 +34525,7 @@
 			(at 0 -2.9 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "6d020419-4742-42a8-8f4d-b5454a78f7cf")
+			(uuid "ceb1da4b-4651-432c-871d-910328692776")
 			(effects
 				(font
 					(size 1 1)
@@ -34536,7 +34536,7 @@
 		(property "Value" "MountingHole_2.2mm_M2_DIN965_Pad_TopBottom"
 			(at 0 2.9 0)
 			(layer "F.Fab")
-			(uuid "9b228350-a50a-4397-bebf-b7ff80a2fd1e")
+			(uuid "d235a379-9708-4313-bfe1-f3cb28ee90af")
 			(effects
 				(font
 					(size 1 1)
@@ -34590,7 +34590,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "400b6104-878e-444a-82a7-f020a320ba2e")
+			(uuid "eac3f7be-10a3-4336-9954-d35f246435a4")
 		)
 		(fp_circle
 			(center 0 0)
@@ -34601,12 +34601,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "a332f91e-197d-47bb-a705-3981a39ec5d2")
+			(uuid "66bd8ca2-f6b0-4f73-89af-0c8fa9e565c5")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "2aa728ed-565f-4a13-8b89-0e8d300d5823")
+			(uuid "e615dbf9-6b29-4df6-999c-50888fdeca47")
 			(effects
 				(font
 					(size 1 1)
@@ -34620,7 +34620,7 @@
 			(layers "F.Cu" "F.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "a0c998b0-a9ac-4321-8a18-21b4446c3fe0")
+			(uuid "53820949-fb00-476e-8a2d-1bc78b41afa8")
 		)
 		(pad "1" connect circle
 			(at 0 0)
@@ -34628,7 +34628,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "a51d1f91-69a9-4589-ad80-1465af581af9")
 		)
 		(pad "e" thru_hole circle
 			(at 0 0)
@@ -34638,7 +34638,7 @@
 			(remove_unused_layers no)
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "18c59939-9399-4986-9835-825e5fc69d3c")
+			(uuid "c1ef74af-c7cc-4e15-83e9-491810a36802")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -37232,7 +37232,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "af3cf65c-e8f1-432c-b6e8-4e883c3184f4")
+			(uuid "59f75d31-aa5f-4985-8b1b-b2560501f734")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37243,7 +37243,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "543849e3-eb52-49cb-b45b-eb249dfeef79")
+			(uuid "0f0e4d08-4eba-4986-ad35-bdbc60c2fb8d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37292,7 +37292,7 @@
 			(layers "B.Cu" "B.Mask")
 			(net 1 "GND")
 			(thermal_bridge_width 10)
-			(uuid "70fd312d-15bb-4033-9c04-3c830677ce7f")
+			(uuid "1258c9e9-ac82-4ba9-afdb-a2a0981b2672")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
