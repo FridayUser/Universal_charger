@@ -1,48 +1,99 @@
-#include <stdio.h>
+#include <Arduino_GFX_Library.h>
 
-#define PIN_CLK 3
-#define PIN_DT 2
-#define PIN_SW 4
+#define GFX_BL 28 // Dostosuj zgodnie ze swoim pinem podświetlenia
 
-#define PIN_ADC 27
+#define BACKGROUND BLACK
+#define TEXT_COLOR WHITE
+#define HIGHLIGHT_COLOR BLUE
 
-int encoderPos = 0;
-int adcValue = 0;
+// Enkoder
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
+#define ENCODER_BUTTON_PIN 4
+
+volatile int encoderPos = 0;
+int lastEncoderPosition = -1;
+int menuIndex = 0;
+
+const char* menuOptions[] = {"Opcja1", "Opcja2", "Opcja3", "Opcja4"};
+const int menuLength = sizeof(menuOptions) / sizeof(menuOptions[0]);
+
+Arduino_DataBus *bus = create_default_Arduino_DataBus();
+Arduino_GFX *gfx = new Arduino_ST7789(bus, GFX_BL, 0 /* rotation */, false /* IPS */);
+
+void IRAM_ATTR updateEncoder() {
+  bool data = digitalRead(ENCODER_PIN_B);
+  bool clk = digitalRead(ENCODER_PIN_A);
+  if (data == clk) {
+    encoderPos++;
+  } else {
+    encoderPos--;
+  }
+}
 
 void setup() {
-  pinMode(PIN_ADC, INPUT);
-  //Zwiększenie rozdzielczości ADC 10->12 bit
-  analogReadResolution(12);
+  Serial.begin(115200);
+  
+  if (!gfx->begin()) {
+    Serial.println("gfx->begin() failed!");
+    while (1);
+  }
+  gfx->fillScreen(BACKGROUND);
+  gfx->setTextColor(TEXT_COLOR);
 
-  pinMode(PIN_CLK, INPUT_PULLUP);
-  pinMode(PIN_DT, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);
+  pinMode(ENCODER_BUTTON_PIN, INPUT_PULLUP);
 
-  //Dioda builtin jako sygnalizator włączenia
-  pinMode(25, OUTPUT);
-  digitalWrite(25, HIGH);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), updateEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), updateEncoder, CHANGE);
 
-  //Pin 23 -> HIGH poprawia jakość napięcia ze źródła odniesienia
-  // pinMode(23, OUTPUT);
-  // digitalWrite(23, HIGH);
-
-  attachInterrupt(digitalPinToInterrupt(PIN_CLK), updateEncoder, RISING);
-  attachInterrupt(digitalPinToInterrupt(PIN_SW), switchPress, RISING);
-
-  Serial.begin(9600);
+  drawMenu();
 }
 
 void loop() {
-  adcValue = analogRead(PIN_ADC);
-  Serial.println(3.3/4096 * adcValue);
-  Serial.println(encoderPos);
-  delay(500);
+  int newEncoderPosition = encoderPos / 4;
+  if (newEncoderPosition != lastEncoderPosition) {
+    lastEncoderPosition = newEncoderPosition;
+    menuIndex = (newEncoderPosition % menuLength + menuLength) % menuLength;
+    drawMenu();
+  }
+
+  if (digitalRead(ENCODER_BUTTON_PIN) == LOW) {
+    delay(50); // Debounce delay
+    if (digitalRead(ENCODER_BUTTON_PIN) == LOW) {
+      handleMenuSelection();
+      while (digitalRead(ENCODER_BUTTON_PIN) == LOW); // Wait for button release
+    }
+  }
+}
+
+void drawMenu() {
+  gfx->fillScreen(BACKGROUND);
+  gfx->setCursor(0, 0);
+  for (int i = 0; i < menuLength; i++) {
+    if (i == menuIndex) {
+      gfx->setTextColor(HIGHLIGHT_COLOR);
+    } else {
+      gfx->setTextColor(TEXT_COLOR);
+    }
+    gfx->println(menuOptions[i]);
+  }
+}
+
+void handleMenuSelection() {
+  gfx->fillScreen(BACKGROUND);
+  gfx->setTextColor(TEXT_COLOR);
+  gfx->setCursor(0, 0);
+  gfx->println(menuOptions[menuIndex]);
+  gfx->println("Opcje dodatkowe:");
+  // Dodaj tutaj kod do wyświetlania dodatkowych opcji dla wybranej opcji menu.
 }
 
 void updateEncoder() {
-
-  bool data = digitalRead(PIN_DT);
-
-  if(data == HIGH){
+  bool data = digitalRead(ENCODER_PIN_A);
+  bool clk = digitalRead(ENCODER_PIN_B);
+  if(data == clk){
     encoderPos++;
     digitalWrite(25, HIGH);
   }
@@ -50,8 +101,4 @@ void updateEncoder() {
     encoderPos--;
     digitalWrite(25, LOW);
   }
-}
-
-void switchPress(){
-    Serial.println("Sw press");
 }

@@ -101,16 +101,31 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(DI_BTN1), switch2Press, RISING);
 
   Serial.begin(9600);
+
+  // ---------------------- Testing ------------------------
+  // --------- Section Analog Out ------------ 
+  analogWriteFreq(100000);
+  analogWriteResolution(12);
+  analogWrite(AQ_PSU_SETV, (4096/3.3)*1.5);
+  analogWrite(AQ_PSU_SETI, (4096/3.3)*1.5);
+  analogWrite(AQ_BAL_BALV, (4096/3.3)*1.5);
+  analogWrite(AQ_LOAD_SETI, (4096/3.3)*1.5);
+  
+  // -------- Section Analog In --------------
+  digitalWrite(MUX_A, HIGH);
+  digitalWrite(MUX_B, HIGH);
+  digitalWrite(MUX_C, HIGH);
+
+  // -------- Section Digital Out ------------
+  digitalWrite(DQ_PSU_OFF, HIGH);
+  digitalWrite(DQ_LOAD_EN, HIGH);
+  digitalWrite(DQ_BATP_ON, HIGH);
 }
 
 //------------------------- Main ------------------------
 
 void loop() {
-  analogWrite(AQ_PSU_SETV, encoderPos);
-  analogWrite(AQ_PSU_SETI, encoderPos);
-  analogWrite(AQ_BAL_BALV, encoderPos);
-  analogWrite(AQ_LOAD_SETI, encoderPos);
-
+  
   AdcReadout = adcReadout(1);
   Serial.println(3.3/4096 * AdcReadout);
   delay(500);
