@@ -55,7 +55,7 @@ int currentMenu = 1;
 
 void setup(void)
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   // Serial.setDebugOutput(true);
   // while(!Serial);
   Serial.println("Arduino_GFX Hello World example");
@@ -227,18 +227,25 @@ void encSW_Interrupt(){
   // the button was short pressed and we go into submenu. Else we return form submenu.
 
   bool encSW = digitalRead(DI_ENC_SW);
-  int pressTime;
-  if(encSW){
-    pressTime = millis();
-  }
-  else{
-    if(pressTime < 2000){
-      currentMenu = currentMenu*10;
+  Serial.println("Button is press");
+  int currentTime = millis();
+  int pressTime; 
+
+  if(!encSW){
+    Serial.println("Time is check");
+    pressTime = currentTime;
+  } else {
+    if (currentTime - pressTime < 2000){
+        Serial.println("Time is smoll");
+        gfx->fillScreen(RED);
+        currentTime = millis();
+        delay(1);
     }
-    else{
-      currentMenu = currentMenu/10;
+    if(currentTime - pressTime > 2000){
+      //currentMenu = currentMenu/10;
+      Serial.println("Time is big");
+      gfx->fillScreen(BLUE);
     }
-      drawSelsectedMenu();
   }
 }
 
