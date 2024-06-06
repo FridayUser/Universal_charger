@@ -2858,6 +2858,26 @@
 		)
 		(uuid "ffddb0f5-146a-4ac7-be05-50490136d513")
 	)
+	(text "r44 i r70 2.2k\n"
+		(exclude_from_sim no)
+		(at 92.71 34.036 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2cf5559b-bf04-44b6-ab4b-008581efdad3")
+	)
+	(text "r62 wydupcyć"
+		(exclude_from_sim no)
+		(at 31.242 62.484 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "951c61e2-2dce-4535-90b9-072619df81fb")
+	)
 	(global_label "FB"
 		(shape input)
 		(at 97.79 106.68 0)

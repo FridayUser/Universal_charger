@@ -1883,6 +1883,16 @@
 		)
 		(uuid "ff21425b-ef55-470e-8313-f6549970ad98")
 	)
+	(text "r55 r56 to usuniecia w linie miedzy kolektorem Q19 a bramkami kosfetów dac rezystor 100k do glowniej lini zasilajacej "
+		(exclude_from_sim no)
+		(at 83.82 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d2a0ed7f-0739-4e88-b801-84dfc07862a1")
+	)
 	(hierarchical_label "P-"
 		(shape output)
 		(at 144.78 62.23 0)
