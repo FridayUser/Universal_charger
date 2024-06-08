@@ -1,15 +1,4 @@
 
-/* TODO: Wymyślić sposób na wyświetlanie menu w odpowiedni sposób. Myślę żeby zrobić to tak:
-* Główne menu to liczby w case od 1-9, kręcenie enkoderem zmienia o 1
-* Menu pomocnicze to liczby od 1x-9x, wciścnięcie przycisku mnoży razy 10
-* przytrzmanie przycisku dzieli przez 10.
-* Jedna metoda do rysowania i obsługi menu i wszystkich funkcji
-* 
-* Dodać bity które będą określać w którym tierze menu się znajduję
-*/
-
-
-
 /*******************************************************************************
  * Start of Arduino_GFX setting
  *
@@ -46,12 +35,17 @@ Arduino_GFX *gfx = new Arduino_ST7789(bus, DF_GFX_RST, 1 /* rotation */, false /
 #define DI_ENC_DT 12
 #define DI_ENC_SW 13
 
-const int screenHeight = 240;
-const int screenWidth = 320;
+#define DI_BTN2 14
+#define DI_BTN1 15
+
 const int menusAmount = 5;
+const int screenWidth= gfx->height();
+const int screenHeight = gfx->width();
 
 int currentMenu = 1;
-
+int currentSubMenu = 1;
+bool inSubMenu = false;
+bool inValueMenu = false;
 
 void setup(void)
 {
@@ -71,6 +65,9 @@ void setup(void)
   gfx->setTextSize(2,2);
   gfx->println("Hello world!");
 
+  pinMode(25, OUTPUT);
+  digitalWrite(25, HIGH);
+
   #ifdef GFX_BL
     pinMode(GFX_BL, OUTPUT);
     digitalWrite(GFX_BL, HIGH);
@@ -79,9 +76,13 @@ void setup(void)
   pinMode(DI_ENC_CLK, INPUT_PULLUP);
   pinMode(DI_ENC_DT, INPUT_PULLUP);
   pinMode(DI_ENC_SW, INPUT_PULLUP);
+  pinMode(DI_BTN2, INPUT_PULLUP);
+  pinMode(DI_BTN1, INPUT_PULLUP);
 
   attachInterrupt(digitalPinToInterrupt(DI_ENC_CLK), encCLK_Interrupt, RISING);
-  attachInterrupt(digitalPinToInterrupt(DI_ENC_SW), encSW_Interrupt, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(DI_ENC_SW), encSW_Interrupt, RISING);
+  attachInterrupt(digitalPinToInterrupt(DI_BTN2), switch1Press, RISING);
+  attachInterrupt(digitalPinToInterrupt(DI_BTN1), switch2Press, RISING);
 
   delay(2000);
 
@@ -95,161 +96,223 @@ void loop()
 }
 
 void drawMenu(){  
-  gfx->setCursor(10, 0*screenHeight/menusAmount);
+  gfx->fillScreen(BLACK);
   gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" Measure voltages ");
 
-  gfx->setCursor(10, 1*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" Control PSU ");
+  if(inSubMenu && currentMenu == 1){
+    gfx->setCursor(10, 10);
+    gfx->println(" Measure voltages ");
 
-  gfx->setCursor(10, 2*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" Set Balancer ");
+    gfx->setCursor(10, 30);
+    gfx->println(" Bat1 V: ");
 
-  gfx->setCursor(10, 3*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" Control Load ");
+    gfx->setCursor(10, 50);
+    gfx->println(" Bat2 V: ");
 
-  gfx->setCursor(10, 4*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" Enable Bat Power ");
-}
+    gfx->setCursor(10, 70);
+    gfx->println(" Bat3 V: ");
 
-void drawSelsectedMenu(){
-  switch (currentMenu){
-    case 1:
-      drawMenu();
-      gfx->setCursor(10, 0*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" Measure voltages ");
-    break;
-    case 2:
-      drawMenu();
-      gfx->setCursor(10, 1*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" Control PSU ");
-    break;
-    case 3:
-      drawMenu();
-      gfx->setCursor(10, 2*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" Set Balancer ");
-    break;
-    case 4:
-      drawMenu();
-      gfx->setCursor(10, 3*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" Control Load ");
-    break;
-    case 5:
-      drawMenu();
-      gfx->setCursor(10, 4*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" Enable Bat Power ");
-    break;
+    gfx->setCursor(10, 90);
+    gfx->println(" Bat4 V: ");
+
+    gfx->setCursor(10, 110);
+    gfx->println(" Bat5 V: ");
+
+  } else if (inSubMenu && currentMenu == 2) {
+    gfx->setCursor(10, 10);
+    gfx->println(" Control PSU ");
+
+    gfx->setCursor(10, 30);
+    gfx->println(" Single cell max voltage: ");
+
+    gfx->setCursor(10, 50);
+    gfx->println(" Single cell max current: ");
+
+  } else if (inSubMenu && currentMenu == 3){
+    gfx->setCursor(10, 10);
+    gfx->println(" Control Load ");
+
+    gfx->setCursor(10, 30);
+    gfx->println(" Load current setting: ");
+
+    gfx->setCursor(10, 70);
+    gfx->println(" Enable load: ");
+
+  } else {
+    gfx->setCursor(10, 10);
+    gfx->println(" Measure voltages ");
+
+    gfx->setCursor(10, 30);
+    gfx->println(" Control PSU ");
+
+    gfx->setCursor(10, 50);
+    gfx->println(" Control Load ");
   }
 }
 
-void drawSubMenu1 () {  
-  gfx->setCursor(10, 0*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" yes ");
-
-  gfx->setCursor(10, 1*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" yes ");
-
-  gfx->setCursor(10, 2*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" yes ");
-
-  gfx->setCursor(10, 3*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" yes ");
-
-  gfx->setCursor(10, 4*screenHeight/menusAmount);
-  gfx->setTextColor(WHITE,BLACK);
-  gfx->println(" no ");
-}
-
-void drawSelectedSubMenu1(){
-  switch (currentMenu){
-    case 11:
-      gfx->setCursor(10, 0*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" yes ");
+void drawMenuSelsected(){
+  gfx->setTextColor(BLACK,WHITE);
+  switch(currentMenu){
+    case 1:
+      if(inSubMenu){
+        switch(currentSubMenu){
+          case 1:
+            gfx->setCursor(10, 30);
+            gfx->println(" Bat1 V: ");
+          break;
+          case 2:
+            gfx->setCursor(10, 50);
+            gfx->println(" Bat2 V: ");
+          break;
+          case 3:
+            gfx->setCursor(10, 70);
+            gfx->println(" Bat3 V: ");
+          break;
+          case 4:
+            gfx->setCursor(10, 90);
+            gfx->println(" Bat4 V: ");
+          break;
+          case 5:
+            gfx->setCursor(10, 110);
+            gfx->println(" Bat5 V: ");
+          break;
+        }
+      } else {
+        gfx->setCursor(10, 10);
+        gfx->println(" Measure voltages ");
+      }
     break;
-    case 12:
-      gfx->setCursor(10, 1*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" yes ");
+    case 2:
+      if(inSubMenu){
+        switch(currentSubMenu){
+          case 1:
+            gfx->setCursor(10, 30);
+            gfx->println(" Single cell max voltage: ");
+          break;
+          case 2:
+            gfx->setCursor(10, 50);
+            gfx->println(" Single cell max current: ");
+          break;
+        }
+      } else {
+        gfx->setCursor(10, 30);
+        gfx->println(" Control PSU ");
+      }
     break;
-    case 13:
-      gfx->setCursor(10, 2*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" yes ");
-    break;
-    case 14:
-      gfx->setCursor(10, 3*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" yes ");
-    break;
-    case 15:
-      gfx->setCursor(10, 4*screenHeight/menusAmount);
-      gfx->setTextColor(BLACK,WHITE);
-      gfx->println(" yes ");
+    case 3:
+      if(inSubMenu){
+        switch(currentSubMenu){
+          case 1:
+            gfx->setCursor(10, 30);
+            gfx->println(" Load current setting: ");
+          break;
+          case 2:
+            gfx->setCursor(10, 70);
+            gfx->println(" Enable load: ");
+          break;
+        } 
+      } else {
+        gfx->setCursor(10, 50);
+        gfx->println(" Control Load ");
+      }
     break;
   }
 }
 
 void encCLK_Interrupt (){
-
   bool encDT = digitalRead(DI_ENC_DT);
-
   if(encDT){
-    currentMenu++;
-    if(currentMenu > menusAmount)
-      currentMenu = 1;
+    if(inSubMenu){
+      currentSubMenu--;
+      if(currentSubMenu > 5 && currentMenu == 1){
+        currentSubMenu = 1;
+      }
+      else if(currentSubMenu > 2 && currentMenu == 2){
+        currentSubMenu = 1;
+      }
+      else if(currentSubMenu > 2 && currentMenu == 3){
+        currentSubMenu = 1;
+      }
+    } else {
+      currentMenu--;
+      if(currentMenu > 3)
+        currentMenu = 1;
+      } 
+  } else {
+    if(inSubMenu){
+      currentSubMenu++;
+      if(currentSubMenu < 1){
+        switch(currentMenu){
+          case 1:
+            currentSubMenu = 5;
+          break;
+          case 2:
+            currentSubMenu = 2;
+          break;
+          case 3:
+            currentSubMenu = 2;
+          break;
+        }
+      }
+    } else {
+      currentMenu++;
+      if(currentMenu < 1)
+        currentMenu = 3;
+    }
   }
-  else {
-    currentMenu--;
-    if(currentMenu < 1)
-      currentMenu = menusAmount;
-  }
-  drawSelsectedMenu();
-
+  drawMenu();
+  drawMenuSelsected();
 }
 
 void encSW_Interrupt(){
-  // If the button is pressed it generates a risig and falling edge. We chceck witch edge it is. 
-  // If it was the rising edge, we count the time to the falling edge. If it was shorter than 2 seconds
-  // the button was short pressed and we go into submenu. Else we return form submenu.
-
-  bool encSW = digitalRead(DI_ENC_SW);
-  Serial.println("Button is press");
-  int currentTime = millis();
-  int pressTime; 
-
-  if(!encSW){
-    Serial.println("Time is check");
-    pressTime = currentTime;
-  } else {
-    if (currentTime - pressTime < 2000){
-        Serial.println("Time is smoll");
-        gfx->fillScreen(RED);
-        currentTime = millis();
-        delay(1);
-    }
-    if(currentTime - pressTime > 2000){
-      //currentMenu = currentMenu/10;
-      Serial.println("Time is big");
-      gfx->fillScreen(BLUE);
-    }
-  }
+  inSubMenu = true;
+  drawMenu();
+  drawMenuSelsected();
 }
 
+void switch1Press(){
+  inSubMenu = false;
+  drawMenu();
+  drawMenuSelsected();
+}
 
+void switch2Press(){
+  delay(1);
+}
+
+// int startTime;
+// int passedTime;
+
+// void encSW_Interrupt(){
+//   // If the button is pressed it generates a risig and falling edge. We chceck witch edge it is. 
+//   // If it was the rising edge, we count the time to the falling edge. If it was shorter than 2 seconds
+//   // the button was short pressed and we go into submenu. Else we return form submenu.
+
+//   bool encSW = digitalRead(DI_ENC_SW);
+//   Serial.println("Button is press");
+  
+
+//   if(!encSW){
+//     Serial.println("Time start is check: ");
+//     startTime = millis();
+//     Serial.println(startTime);
+
+//   } else {
+//     Serial.println("Time stop is check");
+//     passedTime = millis();
+//     Serial.println(passedTime);
+
+//     if (passedTime - startTime < 1000){
+//       Serial.println("Time is smoll");
+//       gfx->fillScreen(RED);
+//     }
+//     if(passedTime - startTime > 1000){
+//       //currentMenu = currentMenu/10;
+//       Serial.println("Time is big");
+//       gfx->fillScreen(BLUE);
+//     }
+//   }
+// }
 
 
 
