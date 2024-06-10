@@ -234,9 +234,9 @@ void encCLK_Interrupt (){
         currentSubMenu = 1;
       }
     } else {
-      currentMenu--;
-      if(currentMenu > 3)
-        currentMenu = 1;
+        currentMenu--;
+        if(currentMenu > 3)
+          currentMenu = 1;
       } 
   } else {
     if(inSubMenu){
