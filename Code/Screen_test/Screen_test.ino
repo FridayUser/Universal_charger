@@ -1,6 +1,5 @@
 /*
 TODO:
-- Dokończyć wymianę stałych na zmienne w pozostałych pozycjach menu
 - Dopisać wyświetlanie pozostałych wartości odczytanych z ADC-ka
 - Dopisać funkcję nastawy wartości
 - Do poprawy logika stanów (Sub i Val menu kiedy true a kiedy false):
@@ -14,9 +13,9 @@ TODO:
 DONE:
 - Szkielet do zmiennych kontroli położenia ibiektów w menu
 - Logika stanów przejścia 
--
--
--
+- encSW_Interrupt i switch1Press skrócone, nie wiem czy to o to chodziło w logice stanów
+-Dokończyć wymianę stałych na zmienne w pozostałych pozycjach menu
+- trochę zoptymalizowany kod, jak się nie spodoba to możemy wrócić do poprzedniej wersji jak dla mnie bardziej czytelny
 
 */
 
@@ -206,7 +205,7 @@ void measureParameters(int &ch0Val, int &ch1Val, int &ch2Val, int &ch3Val, int &
   delay(10);
 }
 
-int menuMainElementCnt;   //Number of elements in main menu
+int menuMainElementCnt; //Number of elements in main menu
 int menuSub1ElementCnt; //Number of elements inside the sub menu 1, not including menu title 
 int menuSub2ElementCnt;
 int menuSub3ElementCnt;
@@ -219,103 +218,90 @@ void drawMenu(){
   gfx->fillScreen(BLACK);
   gfx->setTextColor(WHITE,BLACK);
 
-  if(inSubMenu && currentMenu == 1){
-    menuSub1ElementCnt = 6;    //Update with current element count
+ if (inSubMenu) {
+    switch (currentMenu) {
+      case 1:
+        menuSub1ElementCnt = 6;    //Update with current element count
+        gfx->setCursor(leftOffset, 10);
+        gfx->println(" Measure voltages ");
 
-    gfx->setCursor(10, 10);
-    gfx->println(" Measure voltages ");
-
-    gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
-    gfx->println(" Bat1 V: ");
-    gfx->setCursor(50, titleOffset+1*elementOffset);
-    gfx->println(ch0Val);
-
-    gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
-    gfx->println(" Bat2 V: ");
-    gfx->setCursor(50, titleOffset+2*elementOffset);
-    gfx->println(ch1Val);
-
-    gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
-    gfx->println(" Bat3 V: ");
-    gfx->setCursor(50, titleOffset+3*elementOffset);
-    gfx->println(ch2Val);
-
-    gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
-    gfx->println(" Bat4 V: ");
-    gfx->setCursor(50, titleOffset+4*elementOffset);
-    gfx->println(ch3Val);
-
-    gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
-    gfx->println(" Bat5 V: ");
-    gfx->setCursor(50, titleOffset+5*elementOffset);
-    gfx->println(ch4Val);
-
-    gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
-    gfx->println(" Bat6 V: ");
-    gfx->setCursor(50, titleOffset+6*elementOffset);
-    gfx->println(ch5Val);
-
-  } else if (inSubMenu && currentMenu == 2) {
+        for (int i = 0; i < menuSub1ElementCnt; i++) {
+          int channelValue = 0;
+          switch (i) {
+            case 0: channelValue = ch0Val; break;
+            case 1: channelValue = ch1Val; break;
+            case 2: channelValue = ch2Val; break;
+            case 3: channelValue = ch3Val; break;
+            case 4: channelValue = ch4Val; break;
+            case 5: channelValue = ch5Val; break;
+          }
+          gfx->setCursor(leftOffset, titleOffset + (i + 1) * elementOffset);
+          gfx->println(" Bat" + String(i + 1) + " V: ");
+          gfx->setCursor(50, titleOffset + (i + 1) * elementOffset);
+          gfx->println(channelValue);
+        }
+        break;  
+      case 2:
+        menuSub2ElementCnt = 4; 
         if(inValueMenu){
-      switch(currentSubMenu){
+        switch(currentSubMenu){
         case 1:
-          gfx->setCursor(10, screenHeight/2);
+          gfx->setCursor(leftOffset, screenHeight/2);
           gfx->println(" PSU Voltage: ");
           gfx->setCursor(100, screenHeight/2);
           gfx->println(PsuSetV);  //Natsawiane z przerwania od onkoder clk
-
         break;
         case 2:
-          gfx->setCursor(10, screenHeight/2);
+          gfx->setCursor(leftOffset, screenHeight/2);
           gfx->println(" PSU Current: ");
           gfx->setCursor(100, screenHeight/2);
           gfx->println(PsuSetI);
         break;
         case 3: //Balancing voltage
         break;
-        case
-      }
+        }}
+           //Update with current element count
+
+        gfx->setCursor(leftOffset,10 );
+        gfx->println(" Control PSU ");
+
+        gfx->setCursor(leftOffset, titleOffset + elementOffset);
+        gfx->println(" PSU Voltage: ");
+        gfx->setCursor(100, screenHeight/2);
+        gfx->println(PsuSetV);
+
+        gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+        gfx->println(" PSU Current: ");
+        gfx->setCursor(100, screenHeight/2);
+        gfx->println(PsuSetI);
+
+        gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
+        gfx->println(" Balancing (ON/OFF)?: ");
+
+        gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
+        gfx->println(" Start charging (ON/OFF): ");
+        break;   
+      case 3:
+        menuSub3ElementCnt = 2;    //Update with current element count
+        gfx->setCursor(leftOffset, 10);
+        gfx->println(" Control Load ");
+
+        gfx->setCursor(leftOffset, titleOffset + elementOffset);
+        gfx->println(" Load current setting: ");
+
+        gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+        gfx->println(" Enable load: ");
+        break;
     }
-    menuSub2ElementCnt = 4;    //Update with current element count
-
-    gfx->setCursor(10, 10);
-    gfx->println(" Control PSU ");
-
-    gfx->setCursor(10, 30);
-    gfx->println(" PSU Voltage: ");
-
-    gfx->setCursor(10, 50);
-    gfx->println(" PSU Current: ");
-
-    //Balancing voltage
-
-    gfx->setCursor(10, 70);
-    gfx->println(" Balancing (ON/OFF)?: ");
-
-    gfx->setCursor(10, 90);
-    gfx->println(" Start charging (ON/OFF): ");
-
-  } else if (inSubMenu && currentMenu == 3){
-    menuSub3ElementCnt = 2;    //Update with current element count
-
-    gfx->setCursor(10, 10);
-    gfx->println(" Control Load ");
-
-    gfx->setCursor(10, 30);
-    gfx->println(" Load current setting: ");
-
-    gfx->setCursor(10, 70);
-    gfx->println(" Enable load: ");
-
   } else {
     menuMainElementCnt  = 3;    //Update with current element count
-    gfx->setCursor(10, 10);
+    gfx->setCursor(leftOffset, 10);
     gfx->println(" Measure voltages ");
 
-    gfx->setCursor(10, 30);
+    gfx->setCursor(leftOffset, titleOffset + elementOffset);
     gfx->println(" Control PSU ");
 
-    gfx->setCursor(10, 50);
+    gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
     gfx->println(" Control Load ");
   }
 }
@@ -327,28 +313,25 @@ void drawMenuSelsected(){
       if(inSubMenu){
         switch(currentSubMenu){
           case 1:
-            gfx->setCursor(10, 30);
-            gfx->println(" Bat1 V: ");
-          break;
-          case 2:
-            gfx->setCursor(10, 50);
-            gfx->println(" Bat2 V: ");
-          break;
-          case 3:
-            gfx->setCursor(10, 70);
-            gfx->println(" Bat3 V: ");
-          break;
-          case 4:
-            gfx->setCursor(10, 90);
-            gfx->println(" Bat4 V: ");
-          break;
-          case 5:
-            gfx->setCursor(10, 110);
-            gfx->println(" Bat5 V: ");
-          break;
+       
+           for (int i = 0; i < 5; i++) {
+            int channelValue = 0;
+            switch (i) {
+              case 0: channelValue = ch0Val; break;
+              case 1: channelValue = ch1Val; break;
+              case 2: channelValue = ch2Val; break;
+              case 3: channelValue = ch3Val; break;
+              case 4: channelValue = ch4Val; break;
+            }
+            gfx->setCursor(leftOffset, titleOffset + (i + 1) * elementOffset);
+            gfx->println(" Bat" + String(i + 1) + " V: ");
+            gfx->setCursor(50, titleOffset + (i + 1) * elementOffset);
+            gfx->println(channelValue);
+           }
+        break;  
         }
       } else {
-        gfx->setCursor(10, 10);
+        gfx->setCursor(leftOffset, 10);
         gfx->println(" Measure voltages ");
       }
     break;
@@ -356,16 +339,16 @@ void drawMenuSelsected(){
       if(inSubMenu){
         switch(currentSubMenu){
           case 1:
-            gfx->setCursor(10, 30);
+            gfx->setCursor(leftOffset, titleOffset + elementOffset);
             gfx->println(" Single cell max voltage: ");
           break;
           case 2:
-            gfx->setCursor(10, 50);
+            gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
             gfx->println(" Single cell max current: ");
           break;
         }
       } else {
-        gfx->setCursor(10, 30);
+        gfx->setCursor(leftOffset, titleOffset + elementOffset);
         gfx->println(" Control PSU ");
       }
     break;
@@ -373,16 +356,16 @@ void drawMenuSelsected(){
       if(inSubMenu){
         switch(currentSubMenu){
           case 1:
-            gfx->setCursor(10, 30);
+            gfx->setCursor(leftOffset, titleOffset + elementOffset);
             gfx->println(" Load current setting: ");
           break;
           case 2:
-            gfx->setCursor(10, 70);
+            gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
             gfx->println(" Enable load: ");
           break;
         } 
       } else {
-        gfx->setCursor(10, 50);
+        gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
         gfx->println(" Control Load ");
       }
     break;
@@ -453,12 +436,10 @@ void encCLK_Interrupt (){
 
 void encSW_Interrupt(){ //The "Go In" button
   if (!inSubMenu){
-    inSubMenu = true;
     inValueMenu = false;
   } 
   else if (!inValueMenu){
     inSubMenu = true;
-    inValueMenu = true;
   }
   drawMenu();
   drawMenuSelsected();
@@ -466,12 +447,10 @@ void encSW_Interrupt(){ //The "Go In" button
 
 void switch1Press(){  //The "Go Back" button
   if (inSubMenu){
-    inSubMenu = false;
     inValueMenu = false;
   } 
   else if (inValueMenu){
     inSubMenu = true;
-    inValueMenu = false;
   }
   drawMenu();
   drawMenuSelsected();
