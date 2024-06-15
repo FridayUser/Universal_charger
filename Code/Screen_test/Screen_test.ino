@@ -235,8 +235,8 @@ void encCLK_Interrupt (){
       }
     } else {
         currentMenu--;
-        if(currentMenu > 3)
-          currentMenu = 1;
+        if(currentMenu < 1)
+          currentMenu = 3;
       } 
   } else {
     if(inSubMenu){
@@ -256,8 +256,8 @@ void encCLK_Interrupt (){
       }
     } else {
       currentMenu++;
-      if(currentMenu < 1)
-        currentMenu = 3;
+      if(currentMenu > 3)
+        currentMenu = 1;
     }
   }
   drawMenu();
