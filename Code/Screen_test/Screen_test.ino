@@ -1,3 +1,25 @@
+/*
+TODO:
+- Dokończyć wymianę stałych na zmienne w pozostałych pozycjach menu
+- Dopisać wyświetlanie pozostałych wartości odczytanych z ADC-ka
+- Dopisać funkcję nastawy wartości
+- Do poprawy logika stanów (Sub i Val menu kiedy true a kiedy false):
+    - Main: Sub:F, Val:F
+    - Submenu: Sub:T, Val:F
+    - Val: Sub:T, Val:T
+- W CLKInterrupt zmienić stałe od infinite scrolla na nowe zmienne
+- Dopisać w menuZaznaczonym nowe pozycje z głównego menu
+- Czy da się jakoś uprościć podział na menu i zaznaczone menu do jednej funkcji?
+
+DONE:
+- Szkielet do zmiennych kontroli położenia ibiektów w menu
+- Logika stanów przejścia 
+-
+-
+-
+
+*/
+
 
 /*******************************************************************************
  * Start of Arduino_GFX setting
@@ -38,6 +60,12 @@ Arduino_GFX *gfx = new Arduino_ST7789(bus, DF_GFX_RST, 1 /* rotation */, false /
 #define DI_BTN2 14
 #define DI_BTN1 15
 
+#define MUX_A 27
+#define MUX_B 28
+#define MUX_C 5
+
+#define MUX_ADC 26
+
 const int menusAmount = 5;
 const int screenWidth= gfx->height();
 const int screenHeight = gfx->width();
@@ -46,6 +74,12 @@ int currentMenu = 1;
 int currentSubMenu = 1;
 bool inSubMenu = false;
 bool inValueMenu = false;
+
+int ch0Val, ch1Val, ch2Val, ch3Val, ch4Val, ch5Val, ch6Val, ch7Val;
+
+int PsuSetV = 0;
+int PsuSetI = 0;
+int BalV = 0;
 
 void setup(void)
 {
@@ -65,8 +99,18 @@ void setup(void)
   gfx->setTextSize(2,2);
   gfx->println("Hello world!");
 
+  pinMode(MUX_A, OUTPUT);
+  pinMode(MUX_B, OUTPUT);
+  pinMode(MUX_C, OUTPUT);
+
+  pinMode(MUX_ADC, INPUT);
+  analogReadResolution(12);
+
   pinMode(25, OUTPUT);
   digitalWrite(25, HIGH);
+
+  analogWriteFreq(100000);
+  analogWriteResolution(12);
 
   #ifdef GFX_BL
     pinMode(GFX_BL, OUTPUT);
@@ -79,12 +123,12 @@ void setup(void)
   pinMode(DI_BTN2, INPUT_PULLUP);
   pinMode(DI_BTN1, INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(DI_ENC_CLK), encCLK_Interrupt, RISING);
-  attachInterrupt(digitalPinToInterrupt(DI_ENC_SW), encSW_Interrupt, RISING);
-  attachInterrupt(digitalPinToInterrupt(DI_BTN2), switch1Press, RISING);
-  attachInterrupt(digitalPinToInterrupt(DI_BTN1), switch2Press, RISING);
+  attachInterrupt(digitalPinToInterrupt(DI_ENC_CLK), encCLK_Interrupt, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DI_ENC_SW), encSW_Interrupt, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DI_BTN2), switch1Press, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DI_BTN1), switch2Press, FALLING);
 
-  delay(2000);
+  delay(2000);  //Cosmetic delay, can delete
 
   gfx->fillScreen(BLACK);
   drawMenu();
@@ -92,43 +136,168 @@ void setup(void)
 
 void loop()
 {
+  measureParameters(ch0Val, ch1Val, ch2Val, ch3Val, ch4Val, ch5Val, ch6Val, ch7Val);
   delay(10);  //Sleep well little prince
 }
+
+int adcReadout(int chNum){
+  switch (chNum){
+    case 0:
+      digitalWrite(MUX_A, LOW);
+      digitalWrite(MUX_B, LOW);
+      digitalWrite(MUX_C, LOW);
+      break; 
+    case 1: 
+      digitalWrite(MUX_A, HIGH);
+      digitalWrite(MUX_B, LOW);
+      digitalWrite(MUX_C, LOW);
+      break;
+    case 2:
+      digitalWrite(MUX_A, LOW);
+      digitalWrite(MUX_B, HIGH);
+      digitalWrite(MUX_C, LOW);
+      break;
+    case 3:
+      digitalWrite(MUX_A, HIGH);
+      digitalWrite(MUX_B, HIGH);
+      digitalWrite(MUX_C, LOW);
+      break;
+    case 4:
+      digitalWrite(MUX_A, LOW);
+      digitalWrite(MUX_B, LOW);
+      digitalWrite(MUX_C, HIGH);
+      break; 
+    case 5:
+      digitalWrite(MUX_A, HIGH);
+      digitalWrite(MUX_B, LOW);
+      digitalWrite(MUX_C, HIGH);
+      break;
+    case 6:
+      digitalWrite(MUX_A, LOW);
+      digitalWrite(MUX_B, HIGH);
+      digitalWrite(MUX_C, HIGH);
+      break;
+    case 7:
+      digitalWrite(MUX_A, HIGH);
+      digitalWrite(MUX_B, HIGH);
+      digitalWrite(MUX_C, HIGH);
+      break;
+  }
+  //delay
+  return analogRead(MUX_ADC);
+}
+
+void measureParameters(int &ch0Val, int &ch1Val, int &ch2Val, int &ch3Val, int &ch4Val, int &ch5Val, int &ch6Val, int &ch7Val){
+  ch0Val = adcReadout(0);
+  delay(10);  //MUX channel switch time
+  ch1Val = adcReadout(1);
+  delay(10);
+  ch2Val = adcReadout(2);
+  delay(10);
+  ch3Val = adcReadout(3);
+  delay(10);
+  ch4Val = adcReadout(4);
+  delay(10);
+  ch5Val = adcReadout(5);
+  delay(10);
+  ch6Val = adcReadout(6);
+  delay(10);
+  ch7Val = adcReadout(7);
+  delay(10);
+}
+
+int menuMainElementCnt;   //Number of elements in main menu
+int menuSub1ElementCnt; //Number of elements inside the sub menu 1, not including menu title 
+int menuSub2ElementCnt;
+int menuSub3ElementCnt;
+
+int titleOffset = 20;   //Offset between title and first menu element
+int elementOffset = 20; //Offset between menu elements
+int leftOffset = 10;    //Offest from left screen edge
 
 void drawMenu(){  
   gfx->fillScreen(BLACK);
   gfx->setTextColor(WHITE,BLACK);
 
   if(inSubMenu && currentMenu == 1){
+    menuSub1ElementCnt = 6;    //Update with current element count
+
     gfx->setCursor(10, 10);
     gfx->println(" Measure voltages ");
 
-    gfx->setCursor(10, 30);
+    gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
     gfx->println(" Bat1 V: ");
+    gfx->setCursor(50, titleOffset+1*elementOffset);
+    gfx->println(ch0Val);
 
-    gfx->setCursor(10, 50);
+    gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
     gfx->println(" Bat2 V: ");
+    gfx->setCursor(50, titleOffset+2*elementOffset);
+    gfx->println(ch1Val);
 
-    gfx->setCursor(10, 70);
+    gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
     gfx->println(" Bat3 V: ");
+    gfx->setCursor(50, titleOffset+3*elementOffset);
+    gfx->println(ch2Val);
 
-    gfx->setCursor(10, 90);
+    gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
     gfx->println(" Bat4 V: ");
+    gfx->setCursor(50, titleOffset+4*elementOffset);
+    gfx->println(ch3Val);
 
-    gfx->setCursor(10, 110);
+    gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
     gfx->println(" Bat5 V: ");
+    gfx->setCursor(50, titleOffset+5*elementOffset);
+    gfx->println(ch4Val);
+
+    gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
+    gfx->println(" Bat6 V: ");
+    gfx->setCursor(50, titleOffset+6*elementOffset);
+    gfx->println(ch5Val);
 
   } else if (inSubMenu && currentMenu == 2) {
+        if(inValueMenu){
+      switch(currentSubMenu){
+        case 1:
+          gfx->setCursor(10, screenHeight/2);
+          gfx->println(" PSU Voltage: ");
+          gfx->setCursor(100, screenHeight/2);
+          gfx->println(PsuSetV);  //Natsawiane z przerwania od onkoder clk
+
+        break;
+        case 2:
+          gfx->setCursor(10, screenHeight/2);
+          gfx->println(" PSU Current: ");
+          gfx->setCursor(100, screenHeight/2);
+          gfx->println(PsuSetI);
+        break;
+        case 3: //Balancing voltage
+        break;
+        case
+      }
+    }
+    menuSub2ElementCnt = 4;    //Update with current element count
+
     gfx->setCursor(10, 10);
     gfx->println(" Control PSU ");
 
     gfx->setCursor(10, 30);
-    gfx->println(" Single cell max voltage: ");
+    gfx->println(" PSU Voltage: ");
 
     gfx->setCursor(10, 50);
-    gfx->println(" Single cell max current: ");
+    gfx->println(" PSU Current: ");
+
+    //Balancing voltage
+
+    gfx->setCursor(10, 70);
+    gfx->println(" Balancing (ON/OFF)?: ");
+
+    gfx->setCursor(10, 90);
+    gfx->println(" Start charging (ON/OFF): ");
 
   } else if (inSubMenu && currentMenu == 3){
+    menuSub3ElementCnt = 2;    //Update with current element count
+
     gfx->setCursor(10, 10);
     gfx->println(" Control Load ");
 
@@ -139,6 +308,7 @@ void drawMenu(){
     gfx->println(" Enable load: ");
 
   } else {
+    menuMainElementCnt  = 3;    //Update with current element count
     gfx->setCursor(10, 10);
     gfx->println(" Measure voltages ");
 
@@ -222,7 +392,24 @@ void drawMenuSelsected(){
 void encCLK_Interrupt (){
   bool encDT = digitalRead(DI_ENC_DT);
   if(encDT){
-    if(inSubMenu){
+    if(inValueMenu){
+      if(currentMenu == 2)
+      switch(currentSubMenu){
+        case 1:
+          PsuSetV--;
+          if (PsuSetV < 0)
+            PsuSetV = 0;
+        break;
+        case 2:
+          PsuSetI--;
+          if (PsuSetI < 0)
+            PsuSetI = 0;
+        break;
+        case 3: //Balancing voltage
+        break;
+
+      }
+    } else if(inSubMenu){
       currentSubMenu--;
       if(currentSubMenu > 5 && currentMenu == 1){
         currentSubMenu = 1;
@@ -264,55 +451,36 @@ void encCLK_Interrupt (){
   drawMenuSelsected();
 }
 
-void encSW_Interrupt(){
-  inSubMenu = true;
+void encSW_Interrupt(){ //The "Go In" button
+  if (!inSubMenu){
+    inSubMenu = true;
+    inValueMenu = false;
+  } 
+  else if (!inValueMenu){
+    inSubMenu = true;
+    inValueMenu = true;
+  }
   drawMenu();
   drawMenuSelsected();
 }
 
-void switch1Press(){
-  inSubMenu = false;
+void switch1Press(){  //The "Go Back" button
+  if (inSubMenu){
+    inSubMenu = false;
+    inValueMenu = false;
+  } 
+  else if (inValueMenu){
+    inSubMenu = true;
+    inValueMenu = false;
+  }
   drawMenu();
   drawMenuSelsected();
 }
 
-void switch2Press(){
+void switch2Press(){  //The "Shut it down" button/output enable
+  //Sprawdź czy jesteś w submenu od łądowania żeby potwirdzić wartości, jeżeli tak i wciśniesz przycisk to załącz wyjście
   delay(1);
 }
-
-// int startTime;
-// int passedTime;
-
-// void encSW_Interrupt(){
-//   // If the button is pressed it generates a risig and falling edge. We chceck witch edge it is. 
-//   // If it was the rising edge, we count the time to the falling edge. If it was shorter than 2 seconds
-//   // the button was short pressed and we go into submenu. Else we return form submenu.
-
-//   bool encSW = digitalRead(DI_ENC_SW);
-//   Serial.println("Button is press");
-  
-
-//   if(!encSW){
-//     Serial.println("Time start is check: ");
-//     startTime = millis();
-//     Serial.println(startTime);
-
-//   } else {
-//     Serial.println("Time stop is check");
-//     passedTime = millis();
-//     Serial.println(passedTime);
-
-//     if (passedTime - startTime < 1000){
-//       Serial.println("Time is smoll");
-//       gfx->fillScreen(RED);
-//     }
-//     if(passedTime - startTime > 1000){
-//       //currentMenu = currentMenu/10;
-//       Serial.println("Time is big");
-//       gfx->fillScreen(BLUE);
-//     }
-//   }
-// }
 
 
 
