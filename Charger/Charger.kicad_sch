@@ -3789,68 +3789,6 @@
 		)
 		(uuid "ffdaff8a-d28c-4835-a4d2-eed188ea839e")
 	)
-	(text "EN - podanie 3.3v załącza moduł\nset_I - podanie 3.3v ustawia 5A - działa liniowo +660mV->+1A"
-		(exclude_from_sim no)
-		(at 268.224 90.932 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "2cdbf3f0-63da-4e3e-b427-c2dfdb84f135")
-	)
-	(text "off- stan wysoki 3.3v wyłącza ładowarke domyslenie caly czas 3.3v\nset V - 1V~10v 3.3~33v\nset I  3.3~6A działą dziwnie nie do przewidzenia trzeba bedzie zmierzyć\nvout(adc)*10 =~ Vout"
-		(exclude_from_sim no)
-		(at 54.61 161.798 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "34b36535-6e33-40ed-b5a2-569a560cba5b")
-	)
-	(text "Bardzo proszę o nie renumerowanie elementów !!!"
-		(exclude_from_sim no)
-		(at 138.684 -9.144 0)
-		(effects
-			(font
-				(size 3.81 3.81)
-				(thickness 0.762)
-				(bold yes)
-			)
-		)
-		(uuid "990b3060-4bc0-401d-a0ca-f964124ac506")
-	)
-	(text "Vball - napiecie balansowana podanie 3.3V ustawia balansowanie na 5V (domyslniema być ustawione na 3.3V)\nV_bat_x - napiecie na poszczególnym ogniwie 5V na ogniwie odpowiada 3.3V na pinie \n"
-		(exclude_from_sim no)
-		(at 226.822 19.558 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "a1729308-5e14-4148-9525-ac23477a877b")
-	)
-	(text "do sprawdzenia na bardzo poważnie czy hall jest dobrze włożony do schematu\n tzn jesli pchamy prąd do baterii to napiecie bedzie ponizej 1.65 a jesli \npobieramy z baterii to czy bedzie rosło"
-		(exclude_from_sim no)
-		(at 94.488 181.864 0)
-		(effects
-			(font
-				(size 2.54 2.54)
-			)
-		)
-		(uuid "f0e9f380-af6e-4d35-95df-62b5a29a3d5f")
-	)
-	(text "P_ON - Podanie 3.3 V załącza baterie\nhall_sensor - 0A -> 1.65v  +-1A -> +-0.066mV"
-		(exclude_from_sim no)
-		(at 218.44 150.114 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "fd878cbc-6ef0-4c2b-849f-e82e75f59598")
-	)
 	(symbol
 		(lib_id "power:+3.3V")
 		(at 97.79 88.9 0)
