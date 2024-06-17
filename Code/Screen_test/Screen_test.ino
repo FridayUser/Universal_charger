@@ -90,9 +90,10 @@ int PsuSetI = 0;
 int BalV = 0;
 bool balanceOn = false;
 bool chargeOn = false;
+bool loadOn = false;
 
 int loadISmall = 0;
-int loafILarge = 0;
+int loadILarge = 0;
 
 void setup(void)
 {
@@ -109,7 +110,7 @@ void setup(void)
   gfx->setCursor(gfx->width()/2, gfx->height()/2);
   gfx->setTextColor(random(0xffff), random(0xffff));
   gfx->setTextSize(2,2);
-  gfx->println("Hello world!");
+  gfx->println("I'm not envious of the preson maintaining this code xD, it's terrible");
 
   pinMode(DQ_PSU_OFF, OUTPUT);
   pinMode(DQ_ONE_WIRE, OUTPUT);
@@ -131,10 +132,10 @@ void setup(void)
   pinMode(25, OUTPUT);  //led on
   digitalWrite(25, HIGH);
 
-  analogWrite(AQ_PSU_SETV, (4096/3.3)*0); //*10
-  analogWrite(AQ_PSU_SETI, (4096/3.3)*0);
-  analogWrite(AQ_BAL_BALV, (4096/3.3)*0);
-  analogWrite(AQ_LOAD_SETI,(4096/3.3)*0);
+  analogWrite(AQ_PSU_SETV, 0);
+  analogWrite(AQ_PSU_SETI, 0);
+  analogWrite(AQ_BAL_BALV, 0);
+  analogWrite(AQ_LOAD_SETI,0);
 
   digitalWrite(DQ_PSU_OFF, HIGH);
   digitalWrite(DQ_LOAD_EN, LOW);
@@ -150,7 +151,7 @@ void setup(void)
 
   pinMode(DI_ENC_CLK, INPUT); //Software pullup not used due to an incident
   pinMode(DI_ENC_DT, INPUT); 
-  pinMode(DI_ENC_SW, INPUT);
+  pinMode(DI_ENC_SW, INPUT_PULLUP);
   pinMode(DI_BTN2, INPUT_PULLUP);
   pinMode(DI_BTN1, INPUT_PULLUP);
 
@@ -163,19 +164,39 @@ void setup(void)
 
   gfx->fillScreen(BLACK);
   drawMenu();
+  drawMenuSelsected();
 }
+
+int initialTime;
+int currentTime;
 
 void loop()
 {
-  measureParameters(ch0Val, ch1Val, ch2Val, ch3Val, ch4Val, ch5Val, ch6Val, ch7Val);
+  measureParameters();
   setParameters();
-  delay(100);  //Sleep well little prince
+  delay(1);  //Sleep well little prince
+  initialTime = millis();
+
+  if (inSubMenu && currentMenu == 1){
+    const int timeDelta = 60;
+    currentTime = millis();
+    if(currentTime - initialTime > timeDelta){
+      drawMenu();
+      drawMenuSelsected();
+    }
+  }
 }
 
+// !!FOR SAFETY INCLUDED 0* TO EQUASION, DELETE OR CHANGE GRADUALLY TO TEST !!
+
 void setParameters(){
-  analogWrite(AQ_PSU_SETV, (4096/3.3)*PsuSetV); //*10
-  analogWrite(AQ_PSU_SETI, (4096/3.3)*PsuSetI);
-  analogWrite(AQ_BAL_BALV, (4096/3.3)*BalV);
+  analogWrite(AQ_PSU_SETV, (0*4096/33)*PsuSetV); //*10
+  analogWrite(AQ_PSU_SETI, (0*4096/270)*PsuSetI);
+  analogWrite(AQ_BAL_BALV, (0*4096/5.55)*BalV);
+
+  digitalWrite(DQ_PSU_OFF, !chargeOn);
+  digitalWrite(DQ_LOAD_EN, loadOn);
+  digitalWrite(DQ_BATP_ON, balanceOn);
 }
 
 int adcReadout(int chNum){
@@ -225,46 +246,58 @@ int adcReadout(int chNum){
   return analogRead(MUX_ADC);
 }
 
-void measureParameters(int &ch0Val, int &ch1Val, int &ch2Val, int &ch3Val, int &ch4Val, int &ch5Val, int &ch6Val, int &ch7Val){
+void measureParameters(){
+  const int measTime = 1;
+  
   ch0Val = adcReadout(0);
-  delay(10);  //MUX channel switch time
-  ch1Val = adcReadout(1);
-  delay(10);
-  ch2Val = adcReadout(2);
-  delay(10);
-  ch3Val = adcReadout(3);
-  delay(10);
-  ch4Val = adcReadout(4);
-  delay(10);
-  ch5Val = adcReadout(5);
-  delay(10);
-  ch6Val = adcReadout(6);
-  delay(10);
-  ch7Val = adcReadout(7);
-  delay(10);
+  delay(measTime);  //MUX channel switch time
+
+  ch1Val = adcReadout(1); delay(measTime);
+  ch2Val = adcReadout(2); delay(measTime);
+  ch3Val = adcReadout(3); delay(measTime);
+  ch4Val = adcReadout(4); delay(measTime);
+  ch5Val = adcReadout(5); delay(measTime);
+  ch6Val = adcReadout(6); delay(measTime);
+  ch7Val = adcReadout(7); delay(measTime);
 }
+
 
 const int menuMainElementCnt = 3; //Number of elements in main menu
 const int menuSub1ElementCnt = 8; //Number of elements inside the sub menu 1, not including menu title 
 const int menuSub2ElementCnt = 5; //...
-const int menuSub3ElementCnt = 2; //...
+const int menuSub3ElementCnt = 3; //...
 
 const int titleOffset = 20;   //Offset between title and first menu element
 const int elementOffset = 20; //Offset between menu elements
 const int leftOffset = 10;    //Offest from left screen edge
 
+void drawMenu(){  
+  gfx->fillScreen(BLACK);
+  gfx->setTextColor(WHITE,BLACK);
+
+ if (inSubMenu) {
+    switch (currentMenu) {
+      case 1: drawSubMenu1(); break;
+      case 2: drawSubMenu2(); break;
+      case 3: drawSubMenu3(); break;
+    }
+  } else {
+    drawMainMenu();
+  }
+}
+
 void drawMainMenu(){
     gfx->setCursor(leftOffset, 10);
-    gfx->println(" Very good charger ");
+    gfx->println("== Very good charger, won't blow up i swear o7 ==");
 
     gfx->setCursor(leftOffset, titleOffset + elementOffset);
-    gfx->println(" Measure voltages ");
+    gfx->println(" Measure voltages -> ");
 
     gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-    gfx->println(" Control PSU ");
+    gfx->println(" Control PSU -> ");
 
     gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
-    gfx->println(" Control Load ");
+    gfx->println(" Control Load -> ");
 }
 
 void drawSubMenu1(){
@@ -272,28 +305,28 @@ void drawSubMenu1(){
   gfx->println(".../ Measure voltages ");
 
   gfx->setCursor(leftOffset, titleOffset+elementOffset);
-  gfx->println(" Voltage?: " + String(5.5/4096 * ch6Val));
-
-  gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
-  gfx->println(" Current?: " + String(5.5/4096 * ch7Val));
+  gfx->println(" Voltage?: " + String(33/4096 * ch6Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
-  gfx->println(" Bat1 V: " + String(5.5/4096 * ch0Val) + "V");
+  gfx->println(" Current?: " + String(270/4096 * ch7Val) + "A");
 
   gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
-  gfx->println(" Bat2 V: " + String(5.5/4096 * ch1Val) + "V");
+  gfx->println(" Bat1 V: " + String(5.55/4096 * ch0Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
-  gfx->println(" Bat3 V: " + String(5.5/4096 * ch2Val) + "V");
+  gfx->println(" Bat2 V: " + String(5.55/4096 * ch1Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
-  gfx->println(" Bat4 V: " + String(5.5/4096 * ch3Val) + "V");
+  gfx->println(" Bat3 V: " + String(5.55/4096 * ch2Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
-  gfx->println(" Bat5 V: " + String(5.5/4096 * ch4Val) + "V");
+  gfx->println(" Bat4 V: " + String(5.55/4096 * ch3Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+7*elementOffset);
-  gfx->println(" Bat6 V: " + String(5.5/4096 * ch5Val) + "V");
+  gfx->println(" Bat5 V: " + String(5.55/4096 * ch4Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+8*elementOffset);
+  gfx->println(" Bat6 V: " + String(5.55/4096 * ch5Val) + "V");
 }
 
 void drawSubMenu2(){
@@ -301,15 +334,15 @@ void drawSubMenu2(){
     switch(currentSubMenu){
       case 1:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" PSU Voltage: " + String(3.3/4096 *PsuSetV));
+        gfx->println(" PSU Voltage: " + String(3.3/4096 * PsuSetV));
       break;
       case 2:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" PSU Current: " + String(3.3/4096 *PsuSetI));
+        gfx->println(" PSU Current: " + String(3.3/4096 * PsuSetI));
       break;
       case 3: //Balancing voltage
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" Balancing votage: " + String(BalV));
+        gfx->println(" Balancing votage: " + String(5.55/4096 * BalV));
       break;
     }
   } else {
@@ -318,16 +351,16 @@ void drawSubMenu2(){
 
     //1
     gfx->setCursor(leftOffset, titleOffset + elementOffset);
-    gfx->println(" PSU Voltage: " + String(3.3/4096 * PsuSetV));
+    gfx->println(" PSU Voltage: " + String(33/4096 * PsuSetV));
     //2
     gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-    gfx->println(" PSU Current: " + String(3.3/4096 * PsuSetI));
+    gfx->println(" PSU Current: " + String(270/4096 * PsuSetI));
     //3
     gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
-    gfx->println(" Balancing votage: " + String(3.3/4096 * BalV));
+    gfx->println(" Balancing votage: " + String(5.55/4096 * BalV));
     //4
     gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
-    gfx->println(" Balancing (1/0)?: " + String(balanceOn));
+    gfx->println(" Balancing (1/0): " + String(balanceOn));
     //5
     gfx->setCursor(leftOffset, titleOffset + 5 * elementOffset);
     gfx->println(" Start charging (1/0): " + String(chargeOn));
@@ -339,39 +372,32 @@ void drawSubMenu3(){
     switch(currentSubMenu){
       case 1:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" Load current setting: ");
+        gfx->println(" Small current: "  + String(270/4096 * loadISmall));
       break;
-      case 2: //Balancing voltage
+      case 2:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" Enable load: ");
+        gfx->println(" Large current: "  + String(3.3/4096 * loadILarge));
       break;
-    }
-  }
-
-  gfx->setCursor(leftOffset, 10);
-  gfx->println(".../ Control Load ");
-
-  gfx->setCursor(leftOffset, titleOffset + elementOffset);
-  gfx->println(" Load current setting: ");
-
-  gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-  gfx->println(" Enable load: ");
-}
-
-void drawMenu(){  
-  gfx->fillScreen(BLACK);
-  gfx->setTextColor(WHITE,BLACK);
-
- if (inSubMenu) {
-    switch (currentMenu) {
-      case 1: drawSubMenu1(); break;  
-      case 2: drawSubMenu2(); break;   
-      case 3: drawSubMenu3(); break;
+      case 3: //Balancing voltage
+        gfx->setCursor(leftOffset, screenHeight/2);
+        gfx->println(" Enable load (1/0): ");
+      break;
     }
   } else {
-    drawMainMenu();
+    gfx->setCursor(leftOffset, 10);
+    gfx->println(".../ Control Load ");
+
+    gfx->setCursor(leftOffset, titleOffset + elementOffset);
+    gfx->println(" Small current: " + String(270/4096 * loadISmall));
+
+    gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+    gfx->println(" Large current: " + String(270/4096 * loadILarge));
+
+    gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
+    gfx->println(" Enable load (0/1): ");
   }
 }
+
 
 void drawMenuSelsected(){
   gfx->setTextColor(BLACK,WHITE);
@@ -381,28 +407,36 @@ void drawMenuSelsected(){
       if(inSubMenu){
         switch(currentSubMenu){
           case 1:
-            gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
-            gfx->println(" Bat1 V: " + String(5.5/4096 * ch0Val) + "V");
+            gfx->setCursor(leftOffset, titleOffset+elementOffset);
+            gfx->println(" Voltage?: " + String(33/4096 * ch6Val) + "V");
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
-            gfx->println(" Bat2 V: " + String(5.5/4096 * ch1Val) + "V");
+            gfx->println(" Current?: " + String(270/4096 * ch7Val) + "A");
           break;
           case 3:
             gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
-            gfx->println(" Bat3 V: " + String(5.5/4096 * ch2Val) + "V");
+            gfx->println(" Bat1 V: " + String(5.55/4096 * ch0Val) + "V");
           break;
           case 4:
             gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
-            gfx->println(" Bat4 V: " + String(5.5/4096 * ch3Val) + "V");
+            gfx->println(" Bat2 V: " + String(5.55/4096 * ch1Val) + "V");
           break;
           case 5:
             gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
-            gfx->println(" Bat5 V: " + String(5.5/4096 * ch4Val) + "V");
+            gfx->println(" Bat3 V: " + String(5.55/4096 * ch2Val) + "V");
           break;
           case 6:
             gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
-            gfx->println(" Bat6 V: " + String(5.5/4096 * ch5Val) + "V");
+            gfx->println(" Bat4 V: " + String(5.55/4096 * ch3Val) + "V");
+          break;
+          case 7:
+            gfx->setCursor(leftOffset, titleOffset+7*elementOffset);
+            gfx->println(" Bat5 V: " + String(5.55/4096 * ch4Val) + "V");
+          break;
+          case 8:
+            gfx->setCursor(leftOffset, titleOffset+8*elementOffset);
+            gfx->println(" Bat6 V: " + String(5.55/4096 * ch5Val) + "V");
           break;
         }
       } else {
@@ -415,23 +449,23 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset + elementOffset);
-            gfx->println(" PSU Voltage: " + String(3.3/4096 *PsuSetV));
+            gfx->println(" PSU Voltage: " + String(33/4096 *PsuSetV));
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-            gfx->println(" PSU Current: " + String(3.3/4096 *PsuSetI));
+            gfx->println(" PSU Current: " + String(270/4096 *PsuSetI));
           break;
           case 3:
             gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
-            gfx->println(" Balancing votage: " + String(3.3/4096 *BalV));
+            gfx->println(" Balancing votage: " + String(5.55/4096 *BalV));
           break;
           case 4:
             gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
-            gfx->println(" Balancing (ON/OFF)?: " + String(balanceOn));
+            gfx->println(" Balancing (1/0): " + String(balanceOn));
           break;
           case 5:
             gfx->setCursor(leftOffset, titleOffset + 5 * elementOffset);
-            gfx->println(" Start charging (ON/OFF): " + String(chargeOn));
+            gfx->println(" Start charging (1/0): " + String(chargeOn));
           break;
         }
       } else {
@@ -444,11 +478,15 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset + elementOffset);
-            gfx->println(" Load current setting: ");
+            gfx->println(" Small current: " + String(270/4096 * loadISmall));
           break;
           case 2:
+            gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+            gfx->println(" Large current: " + String(270/4096 * loadILarge));
+          break;
+          case 3:
             gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
-            gfx->println(" Enable load: ");
+            gfx->println(" Enable load (1/0): ");
           break;
         } 
       } else {
@@ -473,7 +511,7 @@ void encCLK_Interrupt (){
       } else if(currentMenu == 3){
         switch(currentSubMenu){
         case 1: loadISmall += 128; break;
-        case 2: loafILarge += 128; break;
+        case 2: loadILarge += 128; break;
         }
       }
     } else if(inSubMenu){
@@ -520,9 +558,9 @@ void encCLK_Interrupt (){
             loadISmall = 0;
         break;
         case 2:
-          loafILarge -= 128;
-          if (loafILarge < 0)
-            loafILarge = 0;
+          loadILarge -= 128;
+          if (loadILarge < 0)
+            loadILarge = 0;
         break;
         }
       }
@@ -546,6 +584,7 @@ void encCLK_Interrupt (){
 }
 
 void encSW_Interrupt(){ //The "Go In" button
+
   if (!inSubMenu){
     inSubMenu = true;
     inValueMenu = false;
@@ -560,23 +599,14 @@ void encSW_Interrupt(){ //The "Go In" button
 
 void switch1Press(){  //The "Go Back" button
 
-  /*
-  void updateValues(){
-    analogWrite(AQ_PSU_SETV, (4096/3.3)*0); //*10
-    analogWrite(AQ_PSU_SETI, (4096/3.3)*0);
-    analogWrite(AQ_BAL_BALV, (4096/3.3)*0);
-    analogWrite(AQ_LOAD_SETI,(4096/3.3)*0);
-  }
-  */
-  
-  if (inSubMenu){
-    inSubMenu = false;
-    inValueMenu = false;
-  } 
-  else if (inValueMenu){
+  if (inValueMenu){
     inSubMenu = true;
     inValueMenu = false;
   }
+  else if (inSubMenu){
+    inSubMenu = false;
+    inValueMenu = false;
+  } 
   drawMenu();
   drawMenuSelsected();
 }
@@ -593,4 +623,3 @@ void switch2Press(){  //The "Shut it down" button/output enable
   drawMenu();
   drawMenuSelsected();
 }
-
