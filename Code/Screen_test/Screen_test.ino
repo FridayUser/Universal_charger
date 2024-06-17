@@ -159,7 +159,7 @@ void setup(void)
   attachInterrupt(digitalPinToInterrupt(DI_BTN2), switch1Press, FALLING);
   attachInterrupt(digitalPinToInterrupt(DI_BTN1), switch2Press, FALLING);
 
-  delay(2000);  //Cosmetic delay, can delete
+  delay(200);  //Cosmetic delay, can delete
 
   gfx->fillScreen(BLACK);
   drawMenu();
@@ -168,7 +168,14 @@ void setup(void)
 void loop()
 {
   measureParameters(ch0Val, ch1Val, ch2Val, ch3Val, ch4Val, ch5Val, ch6Val, ch7Val);
-  delay(10);  //Sleep well little prince
+  setParameters();
+  delay(100);  //Sleep well little prince
+}
+
+void setParameters(){
+  analogWrite(AQ_PSU_SETV, (4096/3.3)*PsuSetV); //*10
+  analogWrite(AQ_PSU_SETI, (4096/3.3)*PsuSetI);
+  analogWrite(AQ_BAL_BALV, (4096/3.3)*BalV);
 }
 
 int adcReadout(int chNum){
@@ -248,12 +255,15 @@ const int leftOffset = 10;    //Offest from left screen edge
 
 void drawMainMenu(){
     gfx->setCursor(leftOffset, 10);
-    gfx->println(" Measure voltages ");
+    gfx->println(" Very good charger ");
 
     gfx->setCursor(leftOffset, titleOffset + elementOffset);
-    gfx->println(" Control PSU ");
+    gfx->println(" Measure voltages ");
 
     gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+    gfx->println(" Control PSU ");
+
+    gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
     gfx->println(" Control Load ");
 }
 
@@ -261,21 +271,23 @@ void drawSubMenu1(){
   gfx->setCursor(leftOffset, 10);
   gfx->println(".../ Measure voltages ");
 
-  for (int i = 0; i < menuSub1ElementCnt; i++) {
-    int channelValue = 0;
-    switch (i) {
-      case 0: channelValue = ch0Val; break;
-      case 1: channelValue = ch1Val; break;
-      case 2: channelValue = ch2Val; break;
-      case 3: channelValue = ch3Val; break;
-      case 4: channelValue = ch4Val; break;
-      case 5: channelValue = ch5Val; break;
-    }
-    gfx->setCursor(leftOffset, titleOffset + (i + 1) * elementOffset);
-    gfx->println(" Bat" + String(i + 1) + " V: ");
-    gfx->setCursor(50, titleOffset + (i + 1) * elementOffset);
-    gfx->println(channelValue);
-  }
+  gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
+  gfx->println(" Bat1 V: " + String(3.3/4096 * ch0Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
+  gfx->println(" Bat2 V: " + String(3.3/4096 * ch1Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
+  gfx->println(" Bat3 V: " + String(3.3/4096 * ch2Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
+  gfx->println(" Bat4 V: " + String(3.3/4096 * ch3Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
+  gfx->println(" Bat5 V: " + String(3.3/4096 * ch4Val) + "V");
+
+  gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
+  gfx->println(" Bat6 V: " + String(3.3/4096 * ch5Val) + "V");
 }
 
 void drawSubMenu2(){
@@ -357,30 +369,38 @@ void drawMenu(){
 
 void drawMenuSelsected(){
   gfx->setTextColor(BLACK,WHITE);
+
   switch(currentMenu){
-    case 1:
+    case 1:   
       if(inSubMenu){
         switch(currentSubMenu){
           case 1:
-       
-           for (int i = 0; i < 5; i++) {
-            int channelValue = 0;
-            switch (i) {
-              case 0: channelValue = ch0Val; break;
-              case 1: channelValue = ch1Val; break;
-              case 2: channelValue = ch2Val; break;
-              case 3: channelValue = ch3Val; break;
-              case 4: channelValue = ch4Val; break;
-            }
-            gfx->setCursor(leftOffset, titleOffset + (i + 1) * elementOffset);
-            gfx->println(" Bat" + String(i + 1) + " V: ");
-            gfx->setCursor(50, titleOffset + (i + 1) * elementOffset);
-            gfx->println(channelValue);
-           }
-        break;  
+            gfx->setCursor(leftOffset, titleOffset+1*elementOffset);
+            gfx->println(" Bat1 V: " + String(3.3/4096 * ch0Val) + "V");
+          break;
+          case 2:
+            gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
+            gfx->println(" Bat2 V: " + String(3.3/4096 * ch1Val) + "V");
+          break;
+          case 3:
+            gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
+            gfx->println(" Bat3 V: " + String(3.3/4096 * ch2Val) + "V");
+          break;
+          case 4:
+            gfx->setCursor(leftOffset, titleOffset+4*elementOffset);
+            gfx->println(" Bat4 V: " + String(3.3/4096 * ch3Val) + "V");
+          break;
+          case 5:
+            gfx->setCursor(leftOffset, titleOffset+5*elementOffset);
+            gfx->println(" Bat5 V: " + String(3.3/4096 * ch4Val) + "V");
+          break;
+          case 6:
+            gfx->setCursor(leftOffset, titleOffset+6*elementOffset);
+            gfx->println(" Bat6 V: " + String(3.3/4096 * ch5Val) + "V");
+          break;
         }
       } else {
-        gfx->setCursor(leftOffset, 10);
+        gfx->setCursor(leftOffset, titleOffset + elementOffset);
         gfx->println(" Measure voltages ");
       }
     break;
@@ -389,15 +409,27 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset + elementOffset);
-            gfx->println(" Single cell max voltage: ");
+            gfx->println(" PSU Voltage: " + String(3.3/4096 *PsuSetV));
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-            gfx->println(" Single cell max current: ");
+            gfx->println(" PSU Current: " + String(3.3/4096 *PsuSetI));
+          break;
+          case 3:
+            gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
+            gfx->println(" Balancing votage: " + String(3.3/4096 *BalV));
+          break;
+          case 4:
+            gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
+            gfx->println(" Balancing (ON/OFF)?: " + String(balanceOn));
+          break;
+          case 5:
+            gfx->setCursor(leftOffset, titleOffset + 5 * elementOffset);
+            gfx->println(" Start charging (ON/OFF): " + String(chargeOn));
           break;
         }
       } else {
-        gfx->setCursor(leftOffset, titleOffset + elementOffset);
+        gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
         gfx->println(" Control PSU ");
       }
     break;
@@ -414,101 +446,97 @@ void drawMenuSelsected(){
           break;
         } 
       } else {
-        gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
+        gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
         gfx->println(" Control Load ");
       }
     break;
   }
 }
 
-void encCLK_Interrupt() {
-    bool encDT = digitalRead(DI_ENC_DT);
 
-    if (encDT) { // Rotation CW
-        handleRotation(-1);
-    } else { // Rotation CCW
-        handleRotation(1);
-    }
+void encCLK_Interrupt (){
 
-    drawMenu();
-    drawMenuSelsected();
-}
-
-void handleRotation(int direction) {
-    if (inValueMenu) {
-        adjustValues(direction);
-    } else if (inSubMenu) {
-        adjustSubMenu(direction);
+  if(digitalRead(DI_ENC_DT)){    //Rotation CW
+    if(inValueMenu){
+      if(currentMenu == 2){
+        switch(currentSubMenu){
+        case 1: PsuSetV += 128; break;
+        case 2: PsuSetI += 128; break;
+        case 3: BalV += 128;    break;
+        }
+      } else if(currentMenu == 3){
+        switch(currentSubMenu){
+        case 1: loadISmall += 128; break;
+        case 2: loafILarge += 128; break;
+        }
+      }
+    } else if(inSubMenu){
+      currentSubMenu++;
+      if(currentSubMenu > menuSub1ElementCnt && currentMenu == 1){
+        currentSubMenu = 1;
+      }
+      else if(currentSubMenu > menuSub2ElementCnt && currentMenu == 2){
+        currentSubMenu = 1;
+      }
+      else if(currentSubMenu > menuSub3ElementCnt && currentMenu == 3){
+        currentSubMenu = 1;
+      }
     } else {
-        adjustMainMenu(direction);
-    }
-}
-
-void adjustValues(int direction) {
-    if (currentMenu == 2) {
-        switch (currentSubMenu) {
-            case 1:
-                PsuSetV = max(0, PsuSetV + direction);
-                break;
-            case 2:
-                PsuSetI = max(0, PsuSetI + direction);
-                break;
-            case 3:
-                BalV = max(0, BalV + direction);
-                break;
+        currentMenu++;
+        if(currentMenu > menuMainElementCnt)
+          currentMenu = 1;
+      } 
+  } else {    //Rotation CCW
+    if(inValueMenu){
+            if(currentMenu == 2){
+        switch(currentSubMenu){
+        case 1:
+          PsuSetV -= 128;
+          if (PsuSetV < 0)
+            PsuSetV = 0;
+        break;
+        case 2:
+          PsuSetI -= 128;
+          if (PsuSetI < 0)
+            PsuSetI = 0;
+        break;
+        case 3: 
+          BalV -= 128;
+          if (BalV < 0)
+            BalV = 0;
+        break;
         }
-    } else if (currentMenu == 3) {
-        switch (currentSubMenu) {
-            case 1:
-                loadISmall = max(0, loadISmall + direction);
-                break;
-            case 2:
-                loafILarge = max(0, loafILarge + direction);
-                break;
+      } else if(currentMenu == 3){
+        switch(currentSubMenu){
+        case 1:
+          loadISmall -= 128;
+          if (loadISmall < 0)
+            loadISmall = 0;
+        break;
+        case 2:
+          loafILarge -= 128;
+          if (loafILarge < 0)
+            loafILarge = 0;
+        break;
         }
-    }
-}
-
-void adjustSubMenu(int direction) {
-    currentSubMenu += direction;
-    if (currentSubMenu < 1) {
-        switch (currentMenu) {
-            case 1:
-                currentSubMenu = menuSub1ElementCnt;
-                break;
-            case 2:
-                currentSubMenu = menuSub2ElementCnt;
-                break;
-            case 3:
-                currentSubMenu = menuSub3ElementCnt;
-                break;
+      }
+    } else if(inSubMenu){
+      currentSubMenu--;
+      if(currentSubMenu < 1){
+        switch(currentMenu){
+          case 1: currentSubMenu = menuSub1ElementCnt; break;
+          case 2: currentSubMenu = menuSub2ElementCnt; break;
+          case 3: currentSubMenu = menuSub3ElementCnt; break;
         }
+      }
     } else {
-        int maxSubMenuCount = 0;
-        switch (currentMenu) {
-            case 1:
-                maxSubMenuCount = menuSub1ElementCnt;
-                break;
-            case 2:
-                maxSubMenuCount = menuSub2ElementCnt;
-                break;
-            case 3:
-                maxSubMenuCount = menuSub3ElementCnt;
-                break;
-        }
-        if (currentSubMenu > maxSubMenuCount) {
-            currentSubMenu = 1;
-        }
-    }
-}
-
-void adjustMainMenu(int direction) {
-    currentMenu += direction;
-    if (currentMenu < 1) {
+      currentMenu--;
+      if(currentMenu < 1)
         currentMenu = menuMainElementCnt;
-    } else if (currentMenu > menuMainElementCnt) {
-        currentMenu = 1;
     }
+  }
+  drawMenu();
+  drawMenuSelsected();
 }
 
 void encSW_Interrupt(){ //The "Go In" button
@@ -559,110 +587,3 @@ void switch2Press(){  //The "Shut it down" button/output enable
   delay(1);
 }
 
-/*
-void encCLK_Interrupt (){
-  bool encDT = digitalRead(DI_ENC_DT);
-
-  if(encDT){    //Rotation CW
-    if(inValueMenu){
-      if(currentMenu == 2){
-        switch(currentSubMenu){
-        case 1:
-          PsuSetV--;
-          if (PsuSetV < 0)
-            PsuSetV = 0;
-        break;
-        case 2:
-          PsuSetI--;
-          if (PsuSetI < 0)
-            PsuSetI = 0;
-        break;
-        case 3: 
-          BalV--;
-          if (BalV < 0)
-            BalV = 0;
-        break;
-        }
-      } else if(currentMenu == 3){
-        switch(currentSubMenu){
-        case 1:
-          loadISmall--;
-          if (loadISmall < 0)
-            loadISmall = 0;
-        break;
-        case 2:
-          loafILarge--;
-          if (loafILarge < 0)
-            loafILarge = 0;
-        break;
-        }
-      }
-    } else if(inSubMenu){
-      currentSubMenu--;
-      if(currentSubMenu > menuSub1ElementCnt && currentMenu == 1){
-        currentSubMenu = 1;
-      }
-      else if(currentSubMenu > menuSub2ElementCnt && currentMenu == 2){
-        currentSubMenu = 1;
-      }
-      else if(currentSubMenu > menuSub3ElementCnt && currentMenu == 3){
-        currentSubMenu = 1;
-      }
-    } else {
-        currentMenu--;
-        if(currentMenu < 1)
-          currentMenu = menuMainElementCnt;
-      } 
-  } else {    //Rotation CCW
-    if(inValueMenu){
-            if(currentMenu == 2){
-        switch(currentSubMenu){
-        case 1:
-          PsuSetV++;
-          if (PsuSetV < 0)
-            PsuSetV = 0;
-        break;
-        case 2:
-          PsuSetI++;
-          if (PsuSetI < 0)
-            PsuSetI = 0;
-        break;
-        case 3: 
-          BalV++;
-          if (BalV < 0)
-            BalV = 0;
-        break;
-        }
-      } else if(currentMenu == 3){
-        switch(currentSubMenu){
-        case 1:
-          loadISmall++;
-          if (loadISmall < 0)
-            loadISmall = 0;
-        break;
-        case 2:
-          loafILarge++;
-          if (loafILarge < 0)
-            loafILarge = 0;
-        break;
-        }
-      }
-    } else if(inSubMenu){
-      currentSubMenu++;
-      if(currentSubMenu < 1){
-        switch(currentMenu){
-          case 1: currentSubMenu = menuSub1ElementCnt; break;
-          case 2: currentSubMenu = menuSub2ElementCnt; break;
-          case 3: currentSubMenu = menuSub3ElementCnt; break;
-        }
-      }
-    } else {
-      currentMenu++;
-      if(currentMenu > menuMainElementCnt)
-        currentMenu = 1;
-    }
-  }
-  drawMenu();
-  drawMenuSelsected();
-}
-*/
