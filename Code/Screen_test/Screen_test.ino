@@ -88,7 +88,7 @@ int ch0Val, ch1Val, ch2Val, ch3Val, ch4Val, ch5Val, ch6Val, ch7Val;
 int PsuSetV = 0;
 int PsuSetI = 0;
 int BalV = 0;
-bool balanceOn = false;
+bool batteryOn = false;
 bool chargeOn = false;
 bool loadOn = false;
 
@@ -132,9 +132,9 @@ void setup(void)
   pinMode(25, OUTPUT);  //led on
   digitalWrite(25, HIGH);
 
-  analogWrite(AQ_PSU_SETV, 0);
-  analogWrite(AQ_PSU_SETI, 0);
-  analogWrite(AQ_BAL_BALV, 0);
+  analogWrite(AQ_PSU_SETV, 1000);
+  analogWrite(AQ_PSU_SETI, 2000);
+  analogWrite(AQ_BAL_BALV, 3000);
   analogWrite(AQ_LOAD_SETI,0);
 
   digitalWrite(DQ_PSU_OFF, HIGH);
@@ -173,30 +173,30 @@ int currentTime;
 void loop()
 {
   measureParameters();
-  setParameters();
+  //setParameters();
   delay(1);  //Sleep well little prince
-  initialTime = millis();
+  // initialTime = millis();
 
-  if (inSubMenu && currentMenu == 1){
-    const int timeDelta = 60;
-    currentTime = millis();
-    if(currentTime - initialTime > timeDelta){
-      drawMenu();
-      drawMenuSelsected();
-    }
-  }
+  // if (inSubMenu && currentMenu == 1){
+  //   const int timeDelta = 60;
+  //   currentTime = millis();
+  //   if(currentTime - initialTime > timeDelta){
+  //     drawMenu();
+  //     drawMenuSelsected();
+  //   }
+  // }
 }
 
 // !!FOR SAFETY INCLUDED 0* TO EQUASION, DELETE OR CHANGE GRADUALLY TO TEST !!
 
 void setParameters(){
-  analogWrite(AQ_PSU_SETV, (0*4096/33)*PsuSetV); //*10
-  analogWrite(AQ_PSU_SETI, (0*4096/270)*PsuSetI);
-  analogWrite(AQ_BAL_BALV, (0*4096/5.55)*BalV);
+  analogWrite(AQ_PSU_SETV, (4096/0.33)*PsuSetV);        //33 -> 1V
+  analogWrite(AQ_PSU_SETI, (4096/3.3)*(PsuSetI));   //
+  analogWrite(AQ_BAL_BALV, (4096/5.55)*BalV);       //
 
   digitalWrite(DQ_PSU_OFF, !chargeOn);
   digitalWrite(DQ_LOAD_EN, loadOn);
-  digitalWrite(DQ_BATP_ON, balanceOn);
+  digitalWrite(DQ_BATP_ON, batteryOn);
 }
 
 int adcReadout(int chNum){
@@ -305,10 +305,10 @@ void drawSubMenu1(){
   gfx->println(".../ Measure voltages ");
 
   gfx->setCursor(leftOffset, titleOffset+elementOffset);
-  gfx->println(" Voltage?: " + String(33/4096 * ch6Val) + "V");
+  gfx->println(" Voltage?: " + String(0.33/4096 * ch6Val) + "V");
 
   gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
-  gfx->println(" Current?: " + String(270/4096 * ch7Val) + "A");
+  gfx->println(" Current?: " + String(3.3/4096 * ch7Val) + "A");
 
   gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
   gfx->println(" Bat1 V: " + String(5.55/4096 * ch0Val) + "V");
@@ -334,7 +334,7 @@ void drawSubMenu2(){
     switch(currentSubMenu){
       case 1:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" PSU Voltage: " + String(3.3/4096 * PsuSetV));
+        gfx->println(" PSU Voltage: " + String(0.33/4096 * PsuSetV));
       break;
       case 2:
         gfx->setCursor(leftOffset, screenHeight/2);
@@ -351,16 +351,16 @@ void drawSubMenu2(){
 
     //1
     gfx->setCursor(leftOffset, titleOffset + elementOffset);
-    gfx->println(" PSU Voltage: " + String(33/4096 * PsuSetV));
+    gfx->println(" PSU Voltage: " + String(0.33/4096 * PsuSetV));
     //2
     gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-    gfx->println(" PSU Current: " + String(270/4096 * PsuSetI));
+    gfx->println(" PSU Current: " + String(3.3/4096 * PsuSetI));
     //3
     gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
     gfx->println(" Balancing votage: " + String(5.55/4096 * BalV));
     //4
     gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
-    gfx->println(" Balancing (1/0): " + String(balanceOn));
+    gfx->println(" Battery output (1/0): " + String(batteryOn));
     //5
     gfx->setCursor(leftOffset, titleOffset + 5 * elementOffset);
     gfx->println(" Start charging (1/0): " + String(chargeOn));
@@ -372,11 +372,11 @@ void drawSubMenu3(){
     switch(currentSubMenu){
       case 1:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" Small current: "  + String(270/4096 * loadISmall));
+        gfx->println(" Small current: "  + String(16.5/4096 * loadISmall));
       break;
       case 2:
         gfx->setCursor(leftOffset, screenHeight/2);
-        gfx->println(" Large current: "  + String(3.3/4096 * loadILarge));
+        gfx->println(" Large current: "  + String(16.5/4096 * loadILarge));
       break;
       case 3: //Balancing voltage
         gfx->setCursor(leftOffset, screenHeight/2);
@@ -388,10 +388,10 @@ void drawSubMenu3(){
     gfx->println(".../ Control Load ");
 
     gfx->setCursor(leftOffset, titleOffset + elementOffset);
-    gfx->println(" Small current: " + String(270/4096 * loadISmall));
+    gfx->println(" Small current: " + String(16.5/4096 * loadISmall));
 
     gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-    gfx->println(" Large current: " + String(270/4096 * loadILarge));
+    gfx->println(" Large current: " + String(16.5/4096 * loadILarge));
 
     gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
     gfx->println(" Enable load (0/1): ");
@@ -408,11 +408,11 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset+elementOffset);
-            gfx->println(" Voltage?: " + String(33/4096 * ch6Val) + "V");
+            gfx->println(" Voltage?: " + String(0.33/4096 * ch6Val) + "V");
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset+2*elementOffset);
-            gfx->println(" Current?: " + String(270/4096 * ch7Val) + "A");
+            gfx->println(" Current?: " + String(16.5/4096 * ch7Val) + "A");
           break;
           case 3:
             gfx->setCursor(leftOffset, titleOffset+3*elementOffset);
@@ -449,11 +449,11 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset + elementOffset);
-            gfx->println(" PSU Voltage: " + String(33/4096 *PsuSetV));
+            gfx->println(" PSU Voltage: " + String(0.33/4096 * PsuSetV));
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-            gfx->println(" PSU Current: " + String(270/4096 *PsuSetI));
+            gfx->println(" PSU Current: " + String(3.3/4096 * PsuSetI));
           break;
           case 3:
             gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
@@ -461,7 +461,7 @@ void drawMenuSelsected(){
           break;
           case 4:
             gfx->setCursor(leftOffset, titleOffset + 4 * elementOffset);
-            gfx->println(" Balancing (1/0): " + String(balanceOn));
+            gfx->println(" Battery output (1/0): " + String(batteryOn));
           break;
           case 5:
             gfx->setCursor(leftOffset, titleOffset + 5 * elementOffset);
@@ -478,11 +478,11 @@ void drawMenuSelsected(){
         switch(currentSubMenu){
           case 1:
             gfx->setCursor(leftOffset, titleOffset + elementOffset);
-            gfx->println(" Small current: " + String(270/4096 * loadISmall));
+            gfx->println(" Small current: " + String(3.3/4096 * 5/loadISmall));
           break;
           case 2:
             gfx->setCursor(leftOffset, titleOffset + 2 * elementOffset);
-            gfx->println(" Large current: " + String(270/4096 * loadILarge));
+            gfx->println(" Large current: " + String(3.3/4096 * 5/loadILarge));
           break;
           case 3:
             gfx->setCursor(leftOffset, titleOffset + 3 * elementOffset);
@@ -500,12 +500,14 @@ void drawMenuSelsected(){
 
 void encCLK_Interrupt (){
 
-  if(digitalRead(DI_ENC_DT)){    //Rotation CW
+  //"AI Module"
+
+  if(!digitalRead(DI_ENC_DT)){    //Rotation CW
     if(inValueMenu){
       if(currentMenu == 2){
         switch(currentSubMenu){
-        case 1: PsuSetV += 128; break;
-        case 2: PsuSetI += 128; break;
+        case 1: PsuSetV += 6400; break;
+        case 2: PsuSetI += 64; break;
         case 3: BalV += 128;    break;
         }
       } else if(currentMenu == 3){
@@ -535,12 +537,12 @@ void encCLK_Interrupt (){
             if(currentMenu == 2){
         switch(currentSubMenu){
         case 1:
-          PsuSetV -= 128;
+          PsuSetV -= 6400;
           if (PsuSetV < 0)
             PsuSetV = 0;
         break;
         case 2:
-          PsuSetI -= 128;
+          PsuSetI -= 64;
           if (PsuSetI < 0)
             PsuSetI = 0;
         break;
@@ -615,7 +617,7 @@ void switch2Press(){  //The "Shut it down" button/output enable
   if(inValueMenu){
     if(currentMenu == 2){
       if(currentSubMenu == 4)
-        balanceOn = !balanceOn;
+        batteryOn = !batteryOn;
       else if (currentSubMenu == 5)
         chargeOn = !chargeOn;
     }

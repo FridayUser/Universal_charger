@@ -106,10 +106,14 @@ void setup() {
   // --------- Section Analog Out ------------ 
   analogWriteFreq(100000);
   analogWriteResolution(12);
-  analogWrite(AQ_PSU_SETV, (4096/3.3)*2.2); //*10
-  analogWrite(AQ_PSU_SETI, (4096/3.3)*0.225);
-  analogWrite(AQ_BAL_BALV, (4096/3.3)*2);
-  analogWrite(AQ_LOAD_SETI, (4096/3.3)*0.5);
+  //analogWrite(AQ_PSU_SETV, (4096/3.3)*1); //*10
+  digitalWrite(AQ_PSU_SETV, LOW);
+  analogWrite(AQ_PSU_SETI, (4096/3.3)*2);
+  analogWrite(AQ_BAL_BALV, (4096/3.3)*3);
+  analogWrite(AQ_LOAD_SETI, (4096/3.3)*2.5);
+  analogWrite(0, 2000);
+  analogWrite(1, 2000);
+  analogWrite(4, 2000);
   
   // -------- Section Analog In --------------
   digitalWrite(MUX_A, HIGH);
@@ -117,8 +121,8 @@ void setup() {
   digitalWrite(MUX_C, HIGH);
 
   // -------- Section Digital Out ------------
-  digitalWrite(DQ_PSU_OFF, LOW);
-  digitalWrite(DQ_LOAD_EN, LOW);
+  digitalWrite(DQ_PSU_OFF, HIGH);
+  digitalWrite(DQ_LOAD_EN, HIGH);
   digitalWrite(DQ_BATP_ON, HIGH);
 }
 
