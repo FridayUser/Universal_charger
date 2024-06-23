@@ -3,19 +3,55 @@ Author: Błażej Chodorowski 263671
 Last update: 23.06.2024
 Project: Universal charger
 
-Functions: GUI for the universal charger project, cofiguration of many variables using only one encoder and two buttons,
- controlling the "Universal charger" functions: setting voltages, currents, reading parameters.
-*/
+This program implements the GUI for a universal charger using an Arduino with a Raspberry Pi Pico dev board. 
+The GUI allows configuration and control of various parameters including voltages, currents, and reading parameters. 
+It uses a single encoder and two buttons to navigate through menus and adjust settings.
 
-/*
+Main Features:
+- Displays a graphical menu system on a display connected to the Raspberry Pi Pico.
+- Controls various functions of the charger including setting and reading voltages and currents.
+- Utilizes interrupt-driven input from the encoder and buttons for navigation and parameter adjustment.
+
+Hardware Configuration:
+- The display is initialized using the Arduino_GFX_Library.
+- Various pins are defined for output control (e.g., DQ_PSU_OFF, AQ_PSU_SETV).
+- Multiplexer (MUX) configuration is used for reading multiple analog values.
+
 TODO:
-- Fix scaling to all values (The corelation between set value and output value: cofigure correct scalers)
+(- Fix scaling to all values (The corelation between set value and output value: cofigure correct scalers)
 - Add auto update every x seconds to value readout page (in while loop do a menu redraw every x seconds)
 - Configure and test electronic load settings, current ones are placeholder
 - Probably a lot more tbh.
-- Maybe rewrite everything so it doesn't suck to work with lol
+- Maybe rewrite everything so it doesn't suck to work with lol)
 
-  Blaze out o7
+- Correct scaling for value settings and output correlation.
+- Implement auto-update feature for readout values.
+- Configure and test electronic load settings.
+- Consider a code refactor for better maintainability.
+
+Pin Definitions:
+- DQ_PSU_OFF: 2, DQ_ONE_WIRE: 4, DQ_LOAD_EN: 8, DQ_BATP_ON: 10
+- AQ_PSU_SETV: 3, AQ_PSU_SETI: 6, AQ_BAL_BALV: 7, AQ_LOAD_SETI: 9
+- DI_ENC_CLK: 11, DI_ENC_DT: 12, DI_ENC_SW: 13, DI_BTN2: 14, DI_BTN1: 15
+- MUX_A: 27, MUX_B: 28, MUX_C: 5, MUX_ADC: 26
+
+Constants:
+- Defined scalers and max values for voltage, current, and balancing voltages.
+- Example: `psuSetVScler`, `psuSetVMax`, `loadIScaler`, `loadIMax`.
+
+Functions:
+- `setup()`: Initializes serial communication, display, and pins.
+- `loop()`: Measures parameters and includes a placeholder for auto-update functionality.
+- `setParameters()`: Configures the output parameters based on user input.
+- `adcReadout(int chNum)`: Reads analog values from the specified channel.
+- `measureParameters()`: Reads and updates all channel values.
+- `drawMenu()`, `drawMainMenu()`, `drawSubMenu1()`, `drawSubMenu2()`, `drawSubMenu3()`: Functions to render the various menu screens.
+- `drawMenuSelected()`: Highlights the selected menu item.
+- Interrupt service routines (`encCLK_Interrupt()`, `encSW_Interrupt()`, `switch1Press()`, `switch2Press()`): Handle encoder and button input for menu navigation and parameter adjustment.
+
+Notes:
+- This code is work-in-progress and may require additional refinement and testing.
+- Ensure proper scaling and calibration of voltage and current settings to achieve accurate outputs.
 */
 
 /*******************************************************************************
